@@ -2,9 +2,12 @@ let map, pepiteIcon, currentBar;
 let bars = [];
 let markers = [];
 let filterState = {
-  type: [], happyHour: false,
-  priceMin: 0, priceMax: 999,
-  fermeApres2h: false, notes: ['A','B','C','D','pépite']
+  type: 'Tous', 
+  happyHour: false,
+  priceMin: 0, 
+  priceMax: 10,
+  fermeApres2h: false, 
+  notes: ['Pépite', 'A', 'B', 'C', 'D']   // ← modifié ici
 };
 let priceRange = { min: 0, max: 20 };
 
@@ -287,41 +290,41 @@ item.onclick = () => {
     });
   }
 
-  const notesList = document.getElementById('filter-notes-list');
-  if (notesList) {
-['A','B','C','D','pépite'].forEach(note => {
-  const btn = document.createElement('button');
-  btn.className = 'note-btn';
-  btn.textContent = note;
-  btn.style.background = NOTE_COLORS[note].bg;
-  btn.style.color = NOTE_COLORS[note].text;
-  btn.dataset.note = note;
-  btn.onclick = () => {
-    const idx = filterState.notes.indexOf(note);
-    if (idx > -1) {
-      if (filterState.notes.length > 1) { filterState.notes.splice(idx, 1); btn.classList.add('inactive'); }
-    } else { filterState.notes.push(note); btn.classList.remove('inactive'); }
-    filterMarkers();
-  };
-  notesList.appendChild(btn);
-});
-
-// Bouton Pépite
-const pepiteBtn = document.createElement('button');
-pepiteBtn.className = 'note-btn';
-pepiteBtn.style.background = '#fef3c7';
-pepiteBtn.style.padding = '4px';
-pepiteBtn.dataset.note = 'pépite';
-pepiteBtn.innerHTML = `<img src="./assets/Pepite.png" style="width:28px;height:28px;object-fit:contain">`;
-pepiteBtn.onclick = () => {
-  const idx = filterState.notes.indexOf('pépite');
-  if (idx > -1) {
-    if (filterState.notes.length > 1) { filterState.notes.splice(idx, 1); pepiteBtn.classList.add('inactive'); }
-  } else { filterState.notes.push('pépite'); pepiteBtn.classList.remove('inactive'); }
-  filterMarkers();
-};
-notesList.appendChild(pepiteBtn);
-  }
+const notesList = document.getElementById('filter-notes-list');
+if (notesList) {
+  const noteList = ['Pépite', 'A', 'B', 'C', 'D'];
+  
+  noteList.forEach(note => {
+    const btn = document.createElement('button');
+    btn.className = 'note-btn';
+    btn.textContent = note;
+    
+    if (note === 'Pépite') {
+      btn.style.background = '#193f21';
+      btn.style.color = 'white';
+      btn.style.fontSize = '14px';
+    } else {
+      btn.style.background = NOTE_COLORS[note].bg;
+      btn.style.color = NOTE_COLORS[note].text;
+    }
+    
+    btn.dataset.note = note;
+    btn.onclick = () => {
+      const idx = filterState.notes.indexOf(note);
+      if (idx > -1) {
+        if (filterState.notes.length > 1) {
+          filterState.notes.splice(idx, 1);
+          btn.classList.add('inactive');
+        }
+      } else {
+        filterState.notes.push(note);
+        btn.classList.remove('inactive');
+      }
+      filterMarkers();
+    };
+    notesList.appendChild(btn);
+  });
+}
 
   const minSlider = document.getElementById('price-min-slider');
   const maxSlider = document.getElementById('price-max-slider');
@@ -386,7 +389,7 @@ const typeOk = filterState.types.length === 0 || (bar.types && filterState.types
     const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
     const h = parseHour(bar.closesAt);
     const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
-const noteOk = (bar.isPépite && filterState.notes.includes('pépite')) || (!bar.isPépite && filterState.notes.includes(bar.rating));
+const noteOk = filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
     const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
     if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
     else { if (map.hasLayer(marker)) map.removeLayer(marker); }
