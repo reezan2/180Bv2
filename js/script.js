@@ -48,87 +48,44 @@ async function initApp() {
     console.error('❌ Error initializing app:', error);
   }
 }
-// Price slider initialization - adapted to actual price range
+
+// Price sliders initialization
 function initFilters() {
   const minSlider = document.getElementById('price-min');
   const maxSlider = document.getElementById('price-max');
-  
+  const priceDisplay = document.getElementById('price-display');
+
   if (!minSlider || !maxSlider) {
     console.error('Price sliders not found in DOM');
     return;
   }
 
-  // Set range based on data (3.5€ to 8€)
-  minSlider.min = priceRange.min;
-  minSlider.max = priceRange.max;
-  minSlider.step = 0.5;
-  minSlider.value = priceRange.min;
-  
-  maxSlider.min = priceRange.min;
-  maxSlider.max = priceRange.max;
-  maxSlider.step = 0.5;
-  maxSlider.value = priceRange.max;
-  
-  filterState.priceMin = priceRange.min;
-  filterState.priceMax = priceRange.max;
+  // Set initial values
+  minSlider.min = maxSlider.min = priceRange.min;
+  minSlider.max = maxSlider.max = priceRange.max;
+  minSlider.value = filterState.priceMin;
+  maxSlider.value = filterState.priceMax;
   updatePriceDisplay();
-  updateFillTrack();
 
   // Min slider event
   minSlider.addEventListener('input', () => {
-    let minVal = parseFloat(minSlider.value);
-    let maxVal = parseFloat(maxSlider.value);
-    
-    if (minVal > maxVal) {
-      minSlider.value = maxVal;
-      minVal = maxVal;
+    if (parseFloat(minSlider.value) > parseFloat(maxSlider.value)) {
+      minSlider.value = maxSlider.value;
     }
-    
-    filterState.priceMin = minVal;
+    filterState.priceMin = parseFloat(minSlider.value);
     updatePriceDisplay();
-    updateFillTrack();
     filterMarkers();
   });
 
   // Max slider event
   maxSlider.addEventListener('input', () => {
-    let minVal = parseFloat(minSlider.value);
-    let maxVal = parseFloat(maxSlider.value);
-    
-    if (maxVal < minVal) {
-      maxSlider.value = minVal;
-      maxVal = minVal;
+    if (parseFloat(maxSlider.value) < parseFloat(minSlider.value)) {
+      maxSlider.value = minSlider.value;
     }
-    
-    filterState.priceMax = maxVal;
+    filterState.priceMax = parseFloat(maxSlider.value);
     updatePriceDisplay();
-    updateFillTrack();
     filterMarkers();
   });
-}
-
-function updatePriceDisplay() {
-  const minText = document.getElementById('price-min-text');
-  const maxText = document.getElementById('price-max-text');
-  
-  if (minText) minText.textContent = `${filterState.priceMin.toFixed(1).replace('.', ',')}€`;
-  if (maxText) maxText.textContent = `${filterState.priceMax.toFixed(1).replace('.', ',')}€`;
-}
-
-function updateFillTrack() {
-  const minSlider = document.getElementById('price-min');
-  const maxSlider = document.getElementById('price-max');
-  const fill = document.getElementById('price-fill');
-  
-  const minVal = parseFloat(minSlider.value);
-  const maxVal = parseFloat(maxSlider.value);
-  const range = parseFloat(maxSlider.max) - parseFloat(minSlider.min);
-  
-  const minPercent = ((minVal - parseFloat(minSlider.min)) / range) * 100;
-  const maxPercent = ((maxVal - parseFloat(minSlider.min)) / range) * 100;
-  
-  fill.style.left = minPercent + '%';
-  fill.style.right = (100 - maxPercent) + '%';
 }
 
 function updatePriceDisplay() {
@@ -413,28 +370,15 @@ function toggleFilterPanel() {
 }
 
 function resetFilters() {
-  filterState = { 
-    types: [], 
-    happyHour: false, 
-    priceMin: priceRange.min, 
-    priceMax: priceRange.max, 
-    fermeApres2h: false, 
-    notes: ['Pépite', 'A', 'B', 'C', 'D'] 
-  };
-  
+  filterState = { types: [], happyHour: false, priceMin: priceRange.min, priceMax: priceRange.max, fermeApres2h: false, notes: ['Pépite', 'A', 'B', 'C', 'D'] };
   document.querySelectorAll('.filter-type-item').forEach((el, i) => el.classList.toggle('active', i === 0));
   document.getElementById('filter-hh').checked = false;
   document.getElementById('filter-ferme').checked = false;
-  
   const minSlider = document.getElementById('price-min');
   const maxSlider = document.getElementById('price-max');
-  if (minSlider && maxSlider) {
-    minSlider.value = priceRange.min;
-    maxSlider.value = priceRange.max;
-    updatePriceDisplay();
-    updateFillTrack();
-  }
-  
+  if (minSlider) minSlider.value = priceRange.min;
+  if (maxSlider) maxSlider.value = priceRange.max;
+  updatePriceDisplay();
   document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
   filterMarkers();
 }
