@@ -166,7 +166,7 @@
   <div id="map"></div>
 
 <!-- MODAL BAR -->
-<div id="bar-modal" onclick="closeModal()" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
+<div id="bar-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
   <div onclick="event.stopPropagation()" class="bg-white rounded-3xl max-w-sm sm:max-w-md w-full max-h-[90vh] overflow-hidden shadow-2xl">
     <div class="modal-scroll max-h-[90vh] overflow-y-auto flex flex-col">
 
@@ -184,42 +184,37 @@
         <!-- Description -->
         <p id="modal-desc" class="text-zinc-600 text-[15px] mb-4"></p>
 
-<!-- NOTE + PDLMC + LES + -->
-        <div class="flex gap-4">
-
-          <!-- Colonne gauche -->
-          <div class="flex flex-col gap-3" style="width: 40%">
-            <div class="flex items-start gap-6">
-              <div id="block-rating">
-                <span class="text-xs tracking-widest text-zinc-500 block mb-1">NOTE</span>
-                <div id="modal-rating" class="text-5xl font-black leading-none"></div>
-              </div>
-              <div id="block-price">
-                <span class="text-xs tracking-widest text-zinc-500 block mb-1">PDLMC</span>
-                <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
-              </div>
-            </div>
-            <div id="modal-extra-info" class="text-zinc-600 text-[15.5px] space-y-2"></div>
+        <!-- NOTE + PDLMC -->
+        <div class="flex gap-8 mb-5">
+          <div>
+            <span class="text-xs tracking-widest text-zinc-500 block">NOTE</span>
+            <div id="modal-rating" class="text-5xl font-black leading-none"></div>
           </div>
-
-          <!-- Colonne droite : LES + -->
-          <div id="block-types" class="hidden" style="width: 60%">
-            <span class="text-xs tracking-widest text-zinc-500 block mb-1">LES +</span>
-            <div id="modal-types" class="flex flex-wrap"></div>
+          <div>
+            <span class="text-xs tracking-widest text-zinc-500 block">PDLMC</span>
+            <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
           </div>
-
         </div>
+
+        <!-- LES + -->
+        <div class="mb-5">
+          <span class="text-xs tracking-widest text-zinc-500 block mb-2">LES +</span>
+          <div id="modal-types" class="flex flex-wrap gap-3"></div>
+        </div>
+
+        <!-- Infos texte (fermeture + happy hour) -->
+        <div id="modal-extra-info" class="text-zinc-600 text-[15.5px] space-y-1"></div>
 
         <!-- Bouton Instagram -->
         <a id="modal-ig" href="#" target="_blank"
-           class="block mt-4 mb-6 mx-auto w-4/5 bg-emerald-700 hover:bg-emerald-800 transition-all text-white text-center py-3 rounded-3xl font-semibold text-sm">
+           class="block mt-6 bg-emerald-700 hover:bg-emerald-800 transition-all text-white text-center py-3 rounded-3xl font-semibold text-sm">
           Voir la publication Instagram →
         </a>
 
-      </div><!-- ferme p-5 -->
-    </div><!-- ferme modal-scroll -->
-  </div><!-- ferme carte blanche -->
-</div><!-- ferme bar-modal -->
+      </div>
+    </div>
+  </div>
+</div>
   <!-- FILTER OVERLAY -->
 <div id="filter-overlay" onclick="toggleFilterPanel()"></div>
 
