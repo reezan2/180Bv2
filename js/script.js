@@ -90,8 +90,15 @@ function initFilters() {
 
 function updatePriceDisplay() {
   const display = document.getElementById('price-display');
-  if (display) {
-    display.textContent = `${filterState.priceMin.toFixed(1)}€ - ${filterState.priceMax.toFixed(1)}€`;
+  if (display) display.textContent = `${filterState.priceMin.toFixed(1)}€ — ${filterState.priceMax.toFixed(1)}€`;
+  const range = priceRange.max - priceRange.min;
+  if (!range) return;
+  const fill = document.getElementById('range-fill');
+  if (fill) {
+    const minPct = ((filterState.priceMin - priceRange.min) / range) * 100;
+    const maxPct = ((filterState.priceMax - priceRange.min) / range) * 100;
+    fill.style.left = minPct + '%';
+    fill.style.width = (maxPct - minPct) + '%';
   }
 }
 
@@ -259,14 +266,20 @@ function initFilterUI() {
       btn.className = 'note-btn';
       btn.textContent = note;
 
-      if (note === 'Pépite') {
-        btn.style.background = '#193f21';
-        btn.style.color = 'white';
-        btn.style.fontSize = '14px';
-      } else {
-        btn.style.background = NOTE_COLORS[note].bg;
-        btn.style.color = NOTE_COLORS[note].text;
-      }
+if (note === 'Pépite') {
+  btn.textContent = '';
+  btn.style.background = '#fef3c7';
+  const img = document.createElement('img');
+  img.src = './assets/Pepite.png';
+  img.style.width = '28px';
+  img.style.height = '28px';
+  img.style.objectFit = 'contain';
+  btn.appendChild(img);
+} else {
+  btn.textContent = note;
+  btn.style.background = NOTE_COLORS[note].bg;
+  btn.style.color = NOTE_COLORS[note].text;
+}
 
       btn.dataset.note = note;
       btn.onclick = () => {
