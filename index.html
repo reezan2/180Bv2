@@ -52,6 +52,64 @@
 .modal-scroll::-webkit-scrollbar-track { background: transparent; }
 .modal-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 99px; }
 .modal-scroll { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
+    /* FILTER PANEL */
+#filter-panel {
+  position: fixed; top: 64px; left: -310px;
+  width: 290px; height: calc(100vh - 64px);
+  background: #fef8f5; z-index: 3000;
+  transition: left 0.3s ease; overflow-y: auto;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.12);
+}
+#filter-panel.open { left: 0; }
+#filter-overlay { position: fixed; inset: 0; z-index: 2999; display: none; }
+#filter-overlay.open { display: block; }
+.filter-section { padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.filter-section-title {
+  font-size: 12px; font-weight: 600; color: #6b7280;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;
+}
+.filter-type-item {
+  display: block; padding: 5px 0; font-size: 15px;
+  color: #9ca3af; cursor: pointer; transition: color 0.15s; user-select: none;
+}
+.filter-type-item.active { color: #111827; font-weight: 600; }
+.filter-type-item:hover { color: #374151; }
+.filter-toggle { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
+.filter-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+.filter-toggle-track { width: 44px; height: 24px; background: #d1d5db; border-radius: 12px; transition: background 0.2s; }
+.filter-toggle input:checked + .filter-toggle-track { background: #059669; }
+.filter-toggle-thumb {
+  position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; background: white; border-radius: 50%;
+  transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); pointer-events: none;
+}
+.filter-toggle input:checked ~ .filter-toggle-thumb { transform: translateX(20px); }
+.dual-range { position: relative; height: 28px; margin: 8px 0 4px; }
+.dual-range-track { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; height: 4px; background: #e5e7eb; border-radius: 2px; }
+.dual-range-fill { position: absolute; top: 50%; transform: translateY(-50%); height: 4px; background: #059669; border-radius: 2px; }
+.dual-range input[type=range] {
+  position: absolute; width: 100%; top: 50%; transform: translateY(-50%);
+  background: transparent; pointer-events: none;
+  -webkit-appearance: none; appearance: none; height: 4px; outline: none;
+}
+.dual-range input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; pointer-events: all;
+  width: 20px; height: 20px; background: #059669; border-radius: 50%;
+  border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.25); cursor: pointer;
+}
+.note-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s; border: none; outline: none;
+}
+.note-btn.inactive { opacity: 0.25; }
+.note-btn:hover { transform: scale(1.1); }
+.leaflet-filter-btn {
+  width: 30px; height: 30px; display: flex; align-items: center;
+  justify-content: center; background: white; border: none; cursor: pointer; color: #374151; padding: 0;
+}
+.leaflet-filter-btn:hover { background: #f9fafb; }
   </style>
 </head>
 <body class="bg-zinc-50">
@@ -145,7 +203,69 @@
     </div><!-- ferme modal-scroll -->
   </div><!-- ferme carte blanche -->
 </div><!-- ferme bar-modal -->
-  
+  <!-- FILTER OVERLAY -->
+<div id="filter-overlay" onclick="toggleFilterPanel()"></div>
+
+<!-- FILTER PANEL -->
+<div id="filter-panel">
+
+  <div style="padding:16px 20px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,0.08)">
+    <span style="font-size:18px;font-weight:700;color:#111827">Filtrer</span>
+    <button onclick="resetFilters()" style="font-size:13px;color:#059669;background:none;border:none;cursor:pointer;font-weight:600">Réinitialiser</button>
+  </div>
+
+  <!-- Type de bar -->
+  <div class="filter-section">
+    <div class="filter-section-title">Type de bar</div>
+    <div id="filter-type-list"></div>
+  </div>
+
+  <!-- Happy hour -->
+  <div class="filter-section">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span class="filter-section-title" style="margin:0">Happy hour</span>
+      <label class="filter-toggle">
+        <input type="checkbox" id="filter-hh" onchange="onFilterChange()">
+        <span class="filter-toggle-track"></span>
+        <span class="filter-toggle-thumb"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Prix -->
+  <div class="filter-section">
+    <div class="filter-section-title">Prix</div>
+    <div class="dual-range">
+      <div class="dual-range-track"></div>
+      <div class="dual-range-fill" id="range-fill"></div>
+      <input type="range" id="price-min-slider" step="0.5" oninput="onPriceMinChange(this.value)">
+      <input type="range" id="price-max-slider" step="0.5" oninput="onPriceMaxChange(this.value)">
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:#6b7280;margin-top:4px">
+      <span id="price-min-label">-</span>
+      <span id="price-max-label">-</span>
+    </div>
+  </div>
+
+  <!-- Ferme après 2h -->
+  <div class="filter-section">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span class="filter-section-title" style="margin:0">Ferme après 2h</span>
+      <label class="filter-toggle">
+        <input type="checkbox" id="filter-ferme" onchange="onFilterChange()">
+        <span class="filter-toggle-track"></span>
+        <span class="filter-toggle-thumb"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="filter-section">
+    <div class="filter-section-title">Notes</div>
+    <div id="filter-notes-list" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+  </div>
+
+</div>
   <!-- MODAL DONATION -->
   <div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
     <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl flex flex-col">
