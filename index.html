@@ -257,17 +257,46 @@
     </div>
   </div>
 
-<!-- Prix - Double Slider amélioré -->
+<!-- Prix - Dual Range Slider -->
 <div class="filter-section">
-  <div class="flex justify-between mb-1">
+  <div class="flex justify-between items-center mb-4">
     <span class="text-xs tracking-widest text-zinc-500">PRIX</span>
-    <span id="price-display" class="text-sm font-medium text-emerald-700">0€ - 10€</span>
   </div>
-  <div class="relative pt-1 pb-6">
-    <input type="range" id="price-min" min="0" max="10" step="0.5" value="0" 
-           class="w-full accent-emerald-600">
-    <input type="range" id="price-max" min="0" max="10" step="0.5" value="10" 
-           class="w-full accent-emerald-600 -mt-5">
+  
+  <div class="relative pt-6 pb-8 px-1">
+    <!-- Background track -->
+    <div class="absolute top-9 left-1 right-1 h-1 bg-zinc-300 rounded-full pointer-events-none"></div>
+    
+    <!-- Active fill track -->
+    <div id="price-fill" class="absolute top-9 h-1 bg-emerald-600 rounded-full pointer-events-none"></div>
+    
+    <!-- Min slider (hidden, absolute positioned) -->
+    <input 
+      type="range" 
+      id="price-min" 
+      min="3.5" 
+      max="8" 
+      step="0.5" 
+      value="3.5" 
+      class="absolute w-full pointer-events-none z-3"
+      style="height: 0; top: 0; left: 0;">
+    
+    <!-- Max slider (hidden, absolute positioned) -->
+    <input 
+      type="range" 
+      id="price-max" 
+      min="3.5" 
+      max="8" 
+      step="0.5" 
+      value="8" 
+      class="absolute w-full pointer-events-none z-4"
+      style="height: 0; top: 0; left: 0;">
+  </div>
+  
+  <!-- Price display -->
+  <div class="flex justify-between text-sm font-medium text-zinc-700 mt-2">
+    <span id="price-min-text">3,5€</span>
+    <span id="price-max-text">8€</span>
   </div>
 </div>
 
