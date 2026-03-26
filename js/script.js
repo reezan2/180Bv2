@@ -1,6 +1,24 @@
 let map, pepiteIcon, currentBar;
 let bars = [];
+let markers = [];
+let filterState = {
+  type: 'Tous', happyHour: false,
+  priceMin: 0, priceMax: 999,
+  fermeApres2h: false, notes: ['A','B','C','D','E']
+};
+let priceRange = { min: 0, max: 20 };
 
+const BAR_TYPES = ['Tous','Bar à fléchette','Bar dansant','Bar à cocktail','Guinguette','Pub','Bar à jeux','Terrasse au soleil'];
+const TYPE_MAP = {
+  'Bar à fléchette':'flechettes', 'Bar dansant':'bar-dansant',
+  'Bar à cocktail':'cocktail', 'Guinguette':'guinguette',
+  'Pub':'pub', 'Bar à jeux':'jeux', 'Terrasse au soleil':'terrasse-au-soleil'
+};
+const NOTE_COLORS = {
+  'A':{ bg:'#306629', text:'white' }, 'B':{ bg:'#b5dabe', text:'#1a4020' },
+  'C':{ bg:'#f4c280', text:'#7c4a03' }, 'D':{ bg:'#e8935a', text:'white' },
+  'E':{ bg:'#d94f4f', text:'white' }
+};
 // ==================== INIT APP ====================
 async function initApp() {
   try {
@@ -8,7 +26,15 @@ async function initApp() {
     const data = await res.json();
     bars = data.bars || [];
     console.log(`✅ ${bars.length} bars chargés`);
-    initMap();
+const prices = bars.map(b => parsePrice(b.pdlmc_price)).filter(p => p > 0);
+if (prices.length) {
+  priceRange.min = Math.floor(Math.min(...prices) * 2) / 2;
+  priceRange.max = Math.ceil(Math.max(...prices) * 2) / 2;
+  filterState.priceMin = priceRange.min;
+  filterState.priceMax = priceRange.max;
+}
+initMap();
+initFilterUI();
   } catch (e) {
     console.error("Erreur chargement bars.json :", e);
   }
@@ -46,8 +72,27 @@ function initMap() {
 
     marker.on('click', () => showBarModal(bar));
     marker.addTo(map);
+    markers.push({ marker, bar });
   });
-
+const FilterControl = L.Control.extend({
+  onAdd: function() {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    const btn = L.DomUtil.create('button', 'leaflet-filter-btn', container);
+    btn.title = 'Filtres';
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+      <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="9" cy="6" r="3" fill="currentColor"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="15" cy="12" r="3" fill="currentColor"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="9" cy="18" r="3" fill="currentColor"/>
+    </svg>`;
+    L.DomEvent.on(btn, 'click', e => { L.DomEvent.stopPropagation(e); toggleFilterPanel(); });
+    L.DomEvent.disableClickPropagation(container);
+    return container;
+  }
+});
+new FilterControl({ position: 'topleft' }).addTo(map);
   console.log('✅ Carte prête avec marqueurs cliquables');
 }
 
@@ -163,6 +208,132 @@ function showSuggestions(input) {
 }
 
 // ==================== EVENTS ====================
+function parsePrice(str) {
+  if (!str) return 0;
+  return parseFloat(str.replace(',', '.').replace(/[€\s]/g, '')) || 0;
+}
+
+function parseHour(closesAt) {
+  if (!closesAt) return -1;
+  return parseInt(closesAt.split(':')[0]);
+}
+
+function initFilterUI() {
+  const typeList = document.getElementById('filter-type-list');
+  if (typeList) {
+    BAR_TYPES.forEach(type => {
+      const item = document.createElement('div');
+      item.className = 'filter-type-item' + (type === 'Tous' ? ' active' : '');
+      item.textContent = type;
+      item.onclick = () => {
+        filterState.type = type;
+        document.querySelectorAll('.filter-type-item').forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+        filterMarkers();
+      };
+      typeList.appendChild(item);
+    });
+  }
+
+  const notesList = document.getElementById('filter-notes-list');
+  if (notesList) {
+    ['A','B','C','D','E'].forEach(note => {
+      const btn = document.createElement('button');
+      btn.className = 'note-btn';
+      btn.textContent = note;
+      btn.style.background = NOTE_COLORS[note].bg;
+      btn.style.color = NOTE_COLORS[note].text;
+      btn.dataset.note = note;
+      btn.onclick = () => {
+        const idx = filterState.notes.indexOf(note);
+        if (idx > -1) {
+          if (filterState.notes.length > 1) {
+            filterState.notes.splice(idx, 1);
+            btn.classList.add('inactive');
+          }
+        } else {
+          filterState.notes.push(note);
+          btn.classList.remove('inactive');
+        }
+        filterMarkers();
+      };
+      notesList.appendChild(btn);
+    });
+  }
+
+  const minSlider = document.getElementById('price-min-slider');
+  const maxSlider = document.getElementById('price-max-slider');
+  if (minSlider && maxSlider) {
+    minSlider.min = maxSlider.min = priceRange.min;
+    minSlider.max = maxSlider.max = priceRange.max;
+    minSlider.value = priceRange.min;
+    maxSlider.value = priceRange.max;
+    updatePriceDisplay();
+  }
+}
+
+function updatePriceDisplay() {
+  const range = priceRange.max - priceRange.min;
+  if (!range) return;
+  const minPct = ((filterState.priceMin - priceRange.min) / range) * 100;
+  const maxPct = ((filterState.priceMax - priceRange.min) / range) * 100;
+  const fill = document.getElementById('range-fill');
+  if (fill) { fill.style.left = minPct + '%'; fill.style.width = (maxPct - minPct) + '%'; }
+  const minLabel = document.getElementById('price-min-label');
+  const maxLabel = document.getElementById('price-max-label');
+  if (minLabel) minLabel.textContent = filterState.priceMin.toFixed(1) + '€';
+  if (maxLabel) maxLabel.textContent = filterState.priceMax.toFixed(1) + '€';
+}
+
+function onPriceMinChange(val) {
+  const v = parseFloat(val);
+  if (v >= filterState.priceMax) { document.getElementById('price-min-slider').value = filterState.priceMax - 0.5; return; }
+  filterState.priceMin = v; updatePriceDisplay(); filterMarkers();
+}
+
+function onPriceMaxChange(val) {
+  const v = parseFloat(val);
+  if (v <= filterState.priceMin) { document.getElementById('price-max-slider').value = filterState.priceMin + 0.5; return; }
+  filterState.priceMax = v; updatePriceDisplay(); filterMarkers();
+}
+
+function onFilterChange() {
+  filterState.happyHour = document.getElementById('filter-hh').checked;
+  filterState.fermeApres2h = document.getElementById('filter-ferme').checked;
+  filterMarkers();
+}
+
+function filterMarkers() {
+  markers.forEach(({ marker, bar }) => {
+    const price = parsePrice(bar.pdlmc_price);
+    const typeOk = filterState.type === 'Tous' || (bar.types && bar.types.includes(TYPE_MAP[filterState.type]));
+    const hhOk = !filterState.happyHour || bar.hasHappyHour === true;
+    const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
+    const h = parseHour(bar.closesAt);
+    const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
+    const noteOk = bar.isPépite || filterState.notes.includes(bar.rating);
+    const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
+    if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
+    else { if (map.hasLayer(marker)) map.removeLayer(marker); }
+  });
+}
+
+function toggleFilterPanel() {
+  document.getElementById('filter-panel').classList.toggle('open');
+  document.getElementById('filter-overlay').classList.toggle('open');
+}
+
+function resetFilters() {
+  filterState = { type:'Tous', happyHour:false, priceMin:priceRange.min, priceMax:priceRange.max, fermeApres2h:false, notes:['A','B','C','D','E'] };
+  document.querySelectorAll('.filter-type-item').forEach((el,i) => el.classList.toggle('active', i === 0));
+  document.getElementById('filter-hh').checked = false;
+  document.getElementById('filter-ferme').checked = false;
+  document.getElementById('price-min-slider').value = priceRange.min;
+  document.getElementById('price-max-slider').value = priceRange.max;
+  updatePriceDisplay();
+  document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
+  filterMarkers();
+}
 window.addEventListener('load', initApp);
 
 document.addEventListener('DOMContentLoaded', () => {
