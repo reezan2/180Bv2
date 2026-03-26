@@ -261,20 +261,19 @@
     </div>
   </div>
 
-  <!-- Prix -->
-  <div class="filter-section">
-    <div class="filter-section-title">Prix</div>
-    <div class="dual-range">
-      <div class="dual-range-track"></div>
-      <div class="dual-range-fill" id="range-fill"></div>
-      <input type="range" id="price-min-slider" step="0.5" oninput="onPriceMinChange(this.value)">
-      <input type="range" id="price-max-slider" step="0.5" oninput="onPriceMaxChange(this.value)">
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:13px;color:#6b7280;margin-top:4px">
-      <span id="price-min-label">-</span>
-      <span id="price-max-label">-</span>
-    </div>
+<!-- Prix - Double Slider amélioré -->
+<div class="filter-section">
+  <div class="flex justify-between mb-1">
+    <span class="text-xs tracking-widest text-zinc-500">PRIX</span>
+    <span id="price-display" class="text-sm font-medium text-emerald-700">0€ - 10€</span>
   </div>
+  <div class="relative pt-1 pb-6">
+    <input type="range" id="price-min" min="0" max="10" step="0.5" value="0" 
+           class="w-full accent-emerald-600">
+    <input type="range" id="price-max" min="0" max="10" step="0.5" value="10" 
+           class="w-full accent-emerald-600 -mt-5">
+  </div>
+</div>
 
   <!-- Notes -->
   <div class="filter-section">
