@@ -155,38 +155,14 @@ function showBarModal(bar) {
   }
 
   document.getElementById('modal-price').textContent = bar.pdlmc_price;
-  document.getElementById('modal-desc').innerHTML = 
-    (bar.description || "Super bar à Nantes ! 🍺") + ' <i>... lire la suite sur Instagram</i>';
+document.getElementById('modal-desc').innerHTML = (bar.description || '') + ' <i>... lire la suite sur Instagram</i>';
 
   document.getElementById('modal-ig').href = bar.ig_link;
-  document.getElementById('modal-photo').src = bar.photos && bar.photos[0] 
-    ? `Photos/${bar.photos[0]}` 
-    : 'https://via.placeholder.com/800x600/cccccc/333333?text=Photo+non+disponible';
+document.getElementById('modal-photo').src = bar.photos && bar.photos[0]
+    ? bar.photos[0]
+    : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
 
-  // Correction ciblée : protection contre les éléments null
-  const typesContainer = document.getElementById('modal-types');
-  if (typesContainer) {
-    typesContainer.innerHTML = '';
-    if (bar.types && bar.types.length > 0) {
-      bar.types.forEach(type => {
-        const img = document.createElement('img');
-        img.src = `./assets/${type}.png`;
-        img.alt = type;
-        img.className = "w-9 h-9 cursor-pointer hover:scale-110 transition-transform";
-        img.title = type;
-        img.onclick = () => alert(type);
-        typesContainer.appendChild(img);
-      });
-    }
-  }
-
-  const infoContainer = document.getElementById('modal-extra-info');
-  if (infoContainer) {
-    let html = '';
-    if (bar.closesAt) html += `<div>Fermeture : <span class="font-medium">${bar.closesAt}</span></div>`;
-    if (bar.hasHappyHour === true) html += `<div class="text-amber-600 font-medium">🎉 Happy Hour</div>`;
-    infoContainer.innerHTML = html;
-  }
+  renderModalInfo(bar);
 
   document.getElementById('bar-modal').classList.remove('hidden');
 }
@@ -211,8 +187,7 @@ img.className = "w-10 h-10 hover:scale-110 transition-transform";
   } else {
     blockTypes.classList.add('hidden');
   }
-  
-  // Infos texte
+
   // Infos texte
   const infoContainer = document.getElementById('modal-extra-info');
   let html = '';
