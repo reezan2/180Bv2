@@ -33,9 +33,50 @@ if (prices.length) {
   filterState.priceMax = priceRange.max;
 }
 initMap();
-initFilterUI();
-  } catch (e) {
-    console.error("Erreur chargement bars.json :", e);
+initFilters();
+function initFilters() {
+  const minSlider = document.getElementById('price-min');
+  const maxSlider = document.getElementById('price-max');
+  const priceDisplay = document.getElementById('price-display');
+  const pepiteCheckbox = document.getElementById('filter-pepite');
+
+  // Initial values
+  minSlider.value = filterState.priceMin;
+  maxSlider.value = filterState.priceMax;
+  updatePriceDisplay();
+
+  // Prix sliders
+  minSlider.addEventListener('input', () => {
+    if (parseFloat(minSlider.value) > parseFloat(maxSlider.value)) {
+      minSlider.value = maxSlider.value;
+    }
+    filterState.priceMin = parseFloat(minSlider.value);
+    updatePriceDisplay();
+    applyFilters();
+  });
+
+  maxSlider.addEventListener('input', () => {
+    if (parseFloat(maxSlider.value) < parseFloat(minSlider.value)) {
+      maxSlider.value = minSlider.value;
+    }
+    filterState.priceMax = parseFloat(maxSlider.value);
+    updatePriceDisplay();
+    applyFilters();
+  });
+
+  // Filtre Pépites
+  if (pepiteCheckbox) {
+    pepiteCheckbox.addEventListener('change', (e) => {
+      filterState.onlyPepites = e.target.checked;
+      applyFilters();
+    });
+  }
+}
+
+function updatePriceDisplay() {
+  const display = document.getElementById('price-display');
+  if (display) {
+    display.textContent = `${filterState.priceMin.toFixed(1)}€ - ${filterState.priceMax.toFixed(1)}€`;
   }
 }
 
