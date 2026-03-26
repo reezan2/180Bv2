@@ -2,9 +2,9 @@ let map, pepiteIcon, currentBar;
 let bars = [];
 let markers = [];
 let filterState = {
-  type: 'Tous', happyHour: false,
+  type: [], happyHour: false,
   priceMin: 0, priceMax: 999,
-  fermeApres2h: false, notes: ['A','B','C','D','E']
+  fermeApres2h: false, notes: ['A','B','C','D','pépite']
 };
 let priceRange = { min: 0, max: 20 };
 
@@ -15,9 +15,8 @@ const TYPE_MAP = {
   'Pub':'pub', 'Bar à jeux':'jeux', 'Terrasse au soleil':'terrasse-au-soleil'
 };
 const NOTE_COLORS = {
-  'A':{ bg:'#306629', text:'white' }, 'B':{ bg:'#b5dabe', text:'#1a4020' },
-  'C':{ bg:'#f4c280', text:'#7c4a03' }, 'D':{ bg:'#e8935a', text:'white' },
-  'E':{ bg:'#d94f4f', text:'white' }
+  'A':{ bg:'#306629', text:'#fef8f5' }, 'B':{ bg:'#b5dabe', text:'#fef8f5' },
+  'C':{ bg:'#f4c280', text:'#fef8f5' }, 'D':{ bg:'#d66643', text:'#fef8f5' },
 };
 // ==================== INIT APP ====================
 async function initApp() {
@@ -225,40 +224,62 @@ function initFilterUI() {
       const item = document.createElement('div');
       item.className = 'filter-type-item' + (type === 'Tous' ? ' active' : '');
       item.textContent = type;
-      item.onclick = () => {
-        filterState.type = type;
-        document.querySelectorAll('.filter-type-item').forEach(el => el.classList.remove('active'));
-        item.classList.add('active');
-        filterMarkers();
-      };
+item.onclick = () => {
+  if (type === 'Tous') {
+    filterState.types = [];
+    document.querySelectorAll('.filter-type-item').forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+  } else {
+    document.querySelector('.filter-type-item').classList.remove('active'); // déselectionne "Tous"
+    item.classList.toggle('active');
+    const mapped = TYPE_MAP[type];
+    const idx = filterState.types.indexOf(mapped);
+    if (idx > -1) filterState.types.splice(idx, 1);
+    else filterState.types.push(mapped);
+    if (filterState.types.length === 0) {
+      document.querySelector('.filter-type-item').classList.add('active');
+    }
+  }
+  filterMarkers();
+};
       typeList.appendChild(item);
     });
   }
 
   const notesList = document.getElementById('filter-notes-list');
   if (notesList) {
-    ['A','B','C','D','E'].forEach(note => {
-      const btn = document.createElement('button');
-      btn.className = 'note-btn';
-      btn.textContent = note;
-      btn.style.background = NOTE_COLORS[note].bg;
-      btn.style.color = NOTE_COLORS[note].text;
-      btn.dataset.note = note;
-      btn.onclick = () => {
-        const idx = filterState.notes.indexOf(note);
-        if (idx > -1) {
-          if (filterState.notes.length > 1) {
-            filterState.notes.splice(idx, 1);
-            btn.classList.add('inactive');
-          }
-        } else {
-          filterState.notes.push(note);
-          btn.classList.remove('inactive');
-        }
-        filterMarkers();
-      };
-      notesList.appendChild(btn);
-    });
+['A','B','C','D','pépite'].forEach(note => {
+  const btn = document.createElement('button');
+  btn.className = 'note-btn';
+  btn.textContent = note;
+  btn.style.background = NOTE_COLORS[note].bg;
+  btn.style.color = NOTE_COLORS[note].text;
+  btn.dataset.note = note;
+  btn.onclick = () => {
+    const idx = filterState.notes.indexOf(note);
+    if (idx > -1) {
+      if (filterState.notes.length > 1) { filterState.notes.splice(idx, 1); btn.classList.add('inactive'); }
+    } else { filterState.notes.push(note); btn.classList.remove('inactive'); }
+    filterMarkers();
+  };
+  notesList.appendChild(btn);
+});
+
+// Bouton Pépite
+const pepiteBtn = document.createElement('button');
+pepiteBtn.className = 'note-btn';
+pepiteBtn.style.background = '#fef3c7';
+pepiteBtn.style.padding = '4px';
+pepiteBtn.dataset.note = 'pépite';
+pepiteBtn.innerHTML = `<img src="./assets/Pepite.png" style="width:28px;height:28px;object-fit:contain">`;
+pepiteBtn.onclick = () => {
+  const idx = filterState.notes.indexOf('pépite');
+  if (idx > -1) {
+    if (filterState.notes.length > 1) { filterState.notes.splice(idx, 1); pepiteBtn.classList.add('inactive'); }
+  } else { filterState.notes.push('pépite'); pepiteBtn.classList.remove('inactive'); }
+  filterMarkers();
+};
+notesList.appendChild(pepiteBtn);
   }
 
   const minSlider = document.getElementById('price-min-slider');
@@ -306,12 +327,12 @@ function onFilterChange() {
 function filterMarkers() {
   markers.forEach(({ marker, bar }) => {
     const price = parsePrice(bar.pdlmc_price);
-    const typeOk = filterState.type === 'Tous' || (bar.types && bar.types.includes(TYPE_MAP[filterState.type]));
+const typeOk = filterState.types.length === 0 || (bar.types && filterState.types.some(t => bar.types.includes(t)));
     const hhOk = !filterState.happyHour || bar.hasHappyHour === true;
     const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
     const h = parseHour(bar.closesAt);
     const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
-    const noteOk = bar.isPépite || filterState.notes.includes(bar.rating);
+const noteOk = (bar.isPépite && filterState.notes.includes('pépite')) || (!bar.isPépite && filterState.notes.includes(bar.rating));
     const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
     if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
     else { if (map.hasLayer(marker)) map.removeLayer(marker); }
@@ -324,8 +345,8 @@ function toggleFilterPanel() {
 }
 
 function resetFilters() {
-  filterState = { type:'Tous', happyHour:false, priceMin:priceRange.min, priceMax:priceRange.max, fermeApres2h:false, notes:['A','B','C','D','E'] };
-  document.querySelectorAll('.filter-type-item').forEach((el,i) => el.classList.toggle('active', i === 0));
+filterState = { types:[], happyHour:false, priceMin:priceRange.min, priceMax:priceRange.max, fermeApres2h:false, notes:['A','B','C','D','pépite'] };
+document.querySelectorAll('.filter-type-item').forEach((el,i) => el.classList.toggle('active', i === 0));
   document.getElementById('filter-hh').checked = false;
   document.getElementById('filter-ferme').checked = false;
   document.getElementById('price-min-slider').value = priceRange.min;
