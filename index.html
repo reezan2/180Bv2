@@ -116,37 +116,48 @@
 </head>
 <body class="bg-zinc-50">
 
-  <!-- HEADER -->
-  <header class="fixed top-0 left-0 right-0 bg-emerald-700 text-white shadow-md h-16 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-      
-      <div class="flex items-center gap-3 shrink-0">
-        <img src="assets/LogoNantes180bars.png" alt="Logo Nantes en 180 Bars" class="h-10 w-auto object-contain"/>
-        <div class="flex items-baseline gap-1.5">
-          <span class="font-bold tracking-tighter text-2xl">NANTES EN</span>
-          <span class="font-black tracking-tighter text-amber-300 text-2xl">180 BARS</span>
+<!-- HEADER RESPONSIVE -->
+<header class="fixed top-0 left-0 right-0 bg-emerald-700 text-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3">
+
+    <!-- Version mobile + desktop -->
+    <div class="flex items-center justify-between gap-3">
+
+      <!-- Logo + Titre -->
+      <div class="flex items-center gap-2 shrink-0">
+        <img src="assets/LogoNantes180bars.png" alt="Logo" class="h-9 w-auto">
+        <div class="hidden sm:block">
+          <span class="font-bold tracking-tighter text-xl">NANTES EN</span>
+          <span class="font-black tracking-tighter text-amber-300 text-xl">180 BARS</span>
         </div>
       </div>
 
-      <div class="flex-1 mx-4 relative max-w-md">
-        <input id="search-bar" type="text" placeholder="Rechercher un bar..." 
-               class="w-full h-10 bg-white/20 rounded-full px-4 text-white placeholder-white/60 focus:outline-none focus:bg-white/30"/>
-        <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden"></div>
+      <!-- Barre de recherche (prend l'espace restant) -->
+      <div class="flex-1 max-w-md mx-2">
+        <input 
+          id="search-bar" 
+          type="text" 
+          placeholder="Rechercher un bar..." 
+          class="w-full h-10 bg-white/20 rounded-full px-5 text-white placeholder-white/70 focus:outline-none focus:bg-white/30 text-sm"
+        >
+        <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden z-50"></div>
       </div>
 
-      <div class="flex items-center gap-4 shrink-0">
+      <!-- Boutons droite -->
+      <div class="flex items-center gap-2 shrink-0">
         <a href="https://www.instagram.com/nantes_en_180_bars" target="_blank" 
-           class="w-10 h-10 transition rounded-2xl flex items-center justify-center hover:opacity-90">
-          <img src="assets/LogoInstagram.png" alt="Instagram" class="w-10 h-10 object-contain">
+           class="w-9 h-9 flex items-center justify-center hover:opacity-80 transition">
+          <img src="assets/LogoInstagram.png" alt="Instagram" class="w-8 h-8 object-contain">
         </a>
         
         <button onclick="openDonationModal()" 
-                class="w-10 h-10 bg-amber-300 hover:bg-amber-400 transition rounded-2xl flex items-center justify-center text-3xl text-emerald-700">
+                class="w-9 h-9 bg-amber-300 hover:bg-amber-400 transition rounded-2xl flex items-center justify-center text-2xl shadow">
           🍺
         </button>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
   <div id="map"></div>
 
