@@ -49,30 +49,40 @@ async function initApp() {
   }
 }
 
-// Price slider initialization
+// Price sliders initialization
 function initFilters() {
-  const priceSlider = document.getElementById('price-slider');
-  
-  if (!priceSlider) {
-    console.error('Price slider not found in DOM');
+  const minSlider = document.getElementById('price-min');
+  const maxSlider = document.getElementById('price-max');
+  const priceDisplay = document.getElementById('price-display');
+
+  if (!minSlider || !maxSlider) {
+    console.error('Price sliders not found in DOM');
     return;
   }
 
-  // Set initial values from data
-  priceSlider.min = priceRange.min;
-  priceSlider.max = priceRange.max;
-  priceSlider.value = (priceRange.min + priceRange.max) / 2; // Middle value
-  
-  filterState.priceMin = priceRange.min;
-  filterState.priceMax = priceRange.max;
+  // Set initial values
+  minSlider.min = maxSlider.min = priceRange.min;
+  minSlider.max = maxSlider.max = priceRange.max;
+  minSlider.value = filterState.priceMin;
+  maxSlider.value = filterState.priceMax;
   updatePriceDisplay();
 
-  // Slider event
-  priceSlider.addEventListener('input', () => {
-    const sliderValue = parseFloat(priceSlider.value);
-    // Set range around the slider position
-    filterState.priceMin = Math.max(priceRange.min, sliderValue - 2.5);
-    filterState.priceMax = Math.min(priceRange.max, sliderValue + 2.5);
+  // Min slider event
+  minSlider.addEventListener('input', () => {
+    if (parseFloat(minSlider.value) > parseFloat(maxSlider.value)) {
+      minSlider.value = maxSlider.value;
+    }
+    filterState.priceMin = parseFloat(minSlider.value);
+    updatePriceDisplay();
+    filterMarkers();
+  });
+
+  // Max slider event
+  maxSlider.addEventListener('input', () => {
+    if (parseFloat(maxSlider.value) < parseFloat(minSlider.value)) {
+      maxSlider.value = minSlider.value;
+    }
+    filterState.priceMax = parseFloat(maxSlider.value);
     updatePriceDisplay();
     filterMarkers();
   });
@@ -80,33 +90,9 @@ function initFilters() {
 
 function updatePriceDisplay() {
   const display = document.getElementById('price-display');
-  const minDisplay = document.getElementById('price-min-display');
-  const maxDisplay = document.getElementById('price-max-display');
-  
   if (display) {
     display.textContent = `${filterState.priceMin.toFixed(1)}€ - ${filterState.priceMax.toFixed(1)}€`;
   }
-  if (minDisplay) {
-    minDisplay.textContent = `${filterState.priceMin.toFixed(1)}€`;
-  }
-  if (maxDisplay) {
-    maxDisplay.textContent = `${filterState.priceMax.toFixed(1)}€`;
-  }
-}
-
-// Price adjustment functions
-function decreasePrice() {
-  const step = 0.5;
-  filterState.priceMin = Math.max(priceRange.min, filterState.priceMin - step);
-  updatePriceDisplay();
-  filterMarkers();
-}
-
-function increasePrice() {
-  const step = 0.5;
-  filterState.priceMax = Math.min(priceRange.max, filterState.priceMax + step);
-  updatePriceDisplay();
-  filterMarkers();
 }
 
 // Initialize map with Leaflet
@@ -384,24 +370,14 @@ function toggleFilterPanel() {
 }
 
 function resetFilters() {
-  filterState = { 
-    types: [], 
-    happyHour: false, 
-    priceMin: priceRange.min, 
-    priceMax: priceRange.max, 
-    fermeApres2h: false, 
-    notes: ['Pépite', 'A', 'B', 'C', 'D'] 
-  };
-  
+  filterState = { types: [], happyHour: false, priceMin: priceRange.min, priceMax: priceRange.max, fermeApres2h: false, notes: ['Pépite', 'A', 'B', 'C', 'D'] };
   document.querySelectorAll('.filter-type-item').forEach((el, i) => el.classList.toggle('active', i === 0));
   document.getElementById('filter-hh').checked = false;
   document.getElementById('filter-ferme').checked = false;
-  
-  const priceSlider = document.getElementById('price-slider');
-  if (priceSlider) {
-    priceSlider.value = (priceRange.min + priceRange.max) / 2;
-  }
-  
+  const minSlider = document.getElementById('price-min');
+  const maxSlider = document.getElementById('price-max');
+  if (minSlider) minSlider.value = priceRange.min;
+  if (maxSlider) maxSlider.value = priceRange.max;
   updatePriceDisplay();
   document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
   filterMarkers();
