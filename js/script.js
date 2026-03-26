@@ -44,9 +44,11 @@ function initFilters() {
   const pepiteCheckbox = document.getElementById('filter-pepite');
 
   // Initial values
-  minSlider.value = filterState.priceMin;
-  maxSlider.value = filterState.priceMax;
-  updatePriceDisplay();
+minSlider.min = maxSlider.min = priceRange.min;
+minSlider.max = maxSlider.max = priceRange.max;
+minSlider.value = filterState.priceMin;
+maxSlider.value = filterState.priceMax;
+updatePriceDisplay();
 
   // Prix sliders
   minSlider.addEventListener('input', () => {
@@ -154,16 +156,11 @@ function showBarModal(bar) {
 
   document.getElementById('modal-price').textContent = bar.pdlmc_price;
 document.getElementById('modal-desc').innerHTML = (bar.description || '') + ' <i>... lire la suite sur Instagram</i>';
-  document.getElementById('modal-desc').innerHTML = 
-    (bar.description || "Super bar à Nantes ! 🍺") + ' <i>... lire la suite sur Instagram</i>';
 
   document.getElementById('modal-ig').href = bar.ig_link;
 document.getElementById('modal-photo').src = bar.photos && bar.photos[0]
     ? bar.photos[0]
     : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
-  document.getElementById('modal-photo').src = bar.photos && bar.photos[0] 
-    ? `Photos/${bar.photos[0]}` 
-    : 'https://via.placeholder.com/800x600/cccccc/333333?text=Photo+non+disponible';
 
   renderModalInfo(bar);
 
@@ -185,9 +182,6 @@ function renderModalInfo(bar) {
 img.className = "w-10 h-10 hover:scale-110 transition-transform";
       img.title = type.replace(/-/g, ' ');
       img.onclick = () => {};
-      img.className = "w-9 h-9 cursor-pointer hover:scale-110 transition-transform";
-      img.title = type;
-      img.onclick = () => alert(type);
       typesContainer.appendChild(img);
     });
   } else {
@@ -208,8 +202,6 @@ if (bar.closesAt) html += `
     <span class="text-xs tracking-widest text-zinc-500">FERMETURE</span>
     <span class="text-zinc-800">${bar.closesAt}</span>
   </div>`;
-  if (bar.closesAt) html += `<div>Fermeture : <span class="font-medium">${bar.closesAt}</span></div>`;
-  if (bar.hasHappyHour === true) html += `<div class="text-amber-600 font-medium">🎉 Happy Hour</div>`;
   infoContainer.innerHTML = html;
 }
 
@@ -348,45 +340,6 @@ if (notesList) {
     updatePriceDisplay();
   }
 }
-
-function updatePriceDisplay() {
-  const range = priceRange.max - priceRange.min;
-  if (!range) return;
-  const minPct = ((filterState.priceMin - priceRange.min) / range) * 100;
-  const maxPct = ((filterState.priceMax - priceRange.min) / range) * 100;
-  const fill = document.getElementById('range-fill');
-  if (fill) { fill.style.left = minPct + '%'; fill.style.width = (maxPct - minPct) + '%'; }
-  const minLabel = document.getElementById('price-min-label');
-  const maxLabel = document.getElementById('price-max-label');
-  if (minLabel) minLabel.textContent = filterState.priceMin.toFixed(1) + '€';
-  if (maxLabel) maxLabel.textContent = filterState.priceMax.toFixed(1) + '€';
-}
-
-// ✅ REMPLACER les 2 fonctions
-function onPriceMinChange(val) {
-  const v = parseFloat(val);
-  if (v >= filterState.priceMax) {
-    document.getElementById('price-min-slider').value = filterState.priceMax - 0.5;
-    return;
-  }
-  filterState.priceMin = v;
-  document.getElementById('price-min-slider').style.zIndex = 5;
-  document.getElementById('price-max-slider').style.zIndex = 4;
-  updatePriceDisplay(); filterMarkers();
-}
-
-function onPriceMaxChange(val) {
-  const v = parseFloat(val);
-  if (v <= filterState.priceMin) {
-    document.getElementById('price-max-slider').value = filterState.priceMin + 0.5;
-    return;
-  }
-  filterState.priceMax = v;
-  document.getElementById('price-max-slider').style.zIndex = 5;
-  document.getElementById('price-min-slider').style.zIndex = 4;
-  updatePriceDisplay(); filterMarkers();
-}
-
 function onFilterChange() {
   filterState.happyHour = document.getElementById('filter-hh').checked;
   filterState.fermeApres2h = document.getElementById('filter-ferme').checked;
@@ -414,7 +367,7 @@ function toggleFilterPanel() {
 }
 
 function resetFilters() {
-filterState = { types:[], happyHour:false, priceMin:priceRange.min, priceMax:priceRange.max, fermeApres2h:false, notes:['A','B','C','D','pépite'] };
+filterState = { types:[], happyHour:false, priceMin:priceRange.min, priceMax:priceRange.max, fermeApres2h:false, notes:['Pépite','A','B','C','D'] };
 document.querySelectorAll('.filter-type-item').forEach((el,i) => el.classList.toggle('active', i === 0));
   document.getElementById('filter-hh').checked = false;
   document.getElementById('filter-ferme').checked = false;
