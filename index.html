@@ -117,6 +117,45 @@
 .leaflet-filter-btn:hover { background: #f9fafb; }
     #filter-panel { z-index: 5000 !important; }
 #filter-overlay { z-index: 4999 !important; }
+
+    /* Dual Range Slider Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #059669;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #059669;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #047857;
+  transform: scale(1.1);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #047857;
+  transform: scale(1.1);
+}
+    
   </style>
 </head>
 <body class="bg-zinc-50">
@@ -270,7 +309,7 @@
     <!-- Active fill track -->
     <div id="price-fill" class="absolute top-9 h-1 bg-emerald-600 rounded-full pointer-events-none"></div>
     
-    <!-- Min slider (hidden, absolute positioned) -->
+    <!-- Min slider (visible thumbs) -->
     <input 
       type="range" 
       id="price-min" 
@@ -278,10 +317,10 @@
       max="8" 
       step="0.5" 
       value="3.5" 
-      class="absolute w-full pointer-events-none z-3"
-      style="height: 0; top: 0; left: 0;">
+      class="absolute w-full h-2 bg-transparent rounded-lg appearance-none cursor-pointer pointer-events-auto z-5"
+      style="top: 6px; left: 0; right: 0;">
     
-    <!-- Max slider (hidden, absolute positioned) -->
+    <!-- Max slider (visible thumbs) -->
     <input 
       type="range" 
       id="price-max" 
@@ -289,8 +328,8 @@
       max="8" 
       step="0.5" 
       value="8" 
-      class="absolute w-full pointer-events-none z-4"
-      style="height: 0; top: 0; left: 0;">
+      class="absolute w-full h-2 bg-transparent rounded-lg appearance-none cursor-pointer pointer-events-auto z-6"
+      style="top: 6px; left: 0; right: 0;">
   </div>
   
   <!-- Price display -->
