@@ -256,17 +256,26 @@
     </div>
   </div>
 
-<!-- Prix - Double Slider amélioré -->
+<!-- Prix - Single Slider with Buttons -->
 <div class="filter-section">
-  <div class="flex justify-between mb-1">
+  <div class="flex justify-between mb-3">
     <span class="text-xs tracking-widest text-zinc-500">PRIX</span>
     <span id="price-display" class="text-sm font-medium text-emerald-700">0€ - 10€</span>
   </div>
-  <div class="relative pt-1 pb-6">
-    <input type="range" id="price-min" min="0" max="10" step="0.5" value="0" 
-           class="w-full accent-emerald-600">
-    <input type="range" id="price-max" min="0" max="10" step="0.5" value="10" 
-           class="w-full accent-emerald-600 -mt-5">
+  
+  <!-- Min Button -->
+  <div class="flex gap-2 mb-3">
+    <button id="price-btn-min" onclick="decreasePrice()" class="flex-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 py-2 rounded-lg font-semibold text-sm transition">−</button>
+    <div class="flex-1 bg-zinc-100 rounded-lg py-2 text-center text-sm font-medium" id="price-min-display">0€</div>
+  </div>
+  
+  <!-- Single Range Slider -->
+  <input type="range" id="price-slider" min="0" max="10" step="0.5" value="5" class="w-full accent-emerald-600 mb-3">
+  
+  <!-- Max Button -->
+  <div class="flex gap-2">
+    <div class="flex-1 bg-zinc-100 rounded-lg py-2 text-center text-sm font-medium" id="price-max-display">10€</div>
+    <button id="price-btn-max" onclick="increasePrice()" class="flex-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 py-2 rounded-lg font-semibold text-sm transition">+</button>
   </div>
 </div>
 
