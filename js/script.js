@@ -187,7 +187,8 @@ img.className = "w-10 h-10 hover:scale-110 transition-transform";
   } else {
     blockTypes.classList.add('hidden');
   }
-
+  
+  // Infos texte
   // Infos texte
   const infoContainer = document.getElementById('modal-extra-info');
   let html = '';
