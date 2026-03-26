@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nantes en 180 Bars - Carte</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 100% !important;
+      overflow: hidden;
+    }
+
+    #map {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 64px);
+      z-index: 0;
+    }
+
+    header { z-index: 2000; }
+    #bar-modal, #donation-modal { z-index: 9999; }
+    .leaflet-top, .leaflet-bottom, .leaflet-control-container { z-index: 1000 !important; }
+
+    .custom-marker { filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.1)); }
+    .modal { animation: fadeIn 0.2s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    .leaflet-control-attribution {
+      background: #10b981 !important;
+      color: white !important;
+      font-size: 11px;
+    }
+    .leaflet-control-attribution a {
+      color: white !important;
+      text-decoration: underline;
+    }
+
+    .leaflet-top { top: 64px !important; }
+.modal-scroll { overflow-y: scroll; }
+.modal-scroll::-webkit-scrollbar { width: 4px; }
+.modal-scroll::-webkit-scrollbar-track { background: transparent; }
+.modal-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 99px; }
+.modal-scroll { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
+  </style>
+</head>
+<body class="bg-zinc-50">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 bg-emerald-700 text-white shadow-md h-16 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+      
+      <div class="flex items-center gap-3 shrink-0">
+        <img src="assets/LogoNantes180bars.png" alt="Logo Nantes en 180 Bars" class="h-10 w-auto object-contain"/>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-bold tracking-tighter text-2xl">NANTES EN</span>
+          <span class="font-black tracking-tighter text-amber-300 text-2xl">180 BARS</span>
+        </div>
+      </div>
+
+      <div class="flex-1 mx-4 relative max-w-md">
+        <input id="search-bar" type="text" placeholder="Rechercher un bar..." 
+               class="w-full h-10 bg-white/20 rounded-full px-4 text-white placeholder-white/60 focus:outline-none focus:bg-white/30"/>
+        <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden"></div>
+      </div>
+
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="https://www.instagram.com/nantes_en_180_bars" target="_blank" 
+           class="w-10 h-10 transition rounded-2xl flex items-center justify-center hover:opacity-90">
+          <img src="assets/LogoInstagram.png" alt="Instagram" class="w-10 h-10 object-contain">
+        </a>
+        
+        <button onclick="openDonationModal()" 
+                class="w-10 h-10 bg-amber-300 hover:bg-amber-400 transition rounded-2xl flex items-center justify-center text-3xl text-emerald-700">
+          🍺
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="map"></div>
+
+<!-- MODAL BAR -->
+<div id="bar-modal" onclick="closeModal()" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
+  <div onclick="event.stopPropagation()" class="bg-white rounded-3xl max-w-sm sm:max-w-md w-full max-h-[90vh] overflow-hidden shadow-2xl">
+    <div class="modal-scroll max-h-[90vh] overflow-y-auto flex flex-col">
+
+      <!-- Photo -->
+      <img id="modal-photo" class="w-full h-auto bg-zinc-200" alt="">
+
+      <div class="p-5">
+
+        <!-- Titre + croix -->
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="modal-name" class="text-2xl font-bold text-zinc-900"></h2>
+          <button onclick="closeModal()" class="text-2xl leading-none text-zinc-400 hover:text-zinc-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-zinc-100">×</button>
+        </div>
+
+        <!-- Description -->
+        <p id="modal-desc" class="text-zinc-600 text-[15px] mb-4"></p>
+
+        <!-- NOTE + PDLMC + LES + -->
+        <div class="flex gap-4">
+
+          <!-- Colonne gauche -->
+          <div class="flex flex-col gap-3" style="width: 40%">
+            <div class="flex items-start gap-6">
+              <div id="block-rating">
+                <span class="text-xs tracking-widest text-zinc-500 block mb-1">NOTE</span>
+                <div id="modal-rating" class="text-5xl font-black leading-none"></div>
+              </div>
+              <div id="block-price">
+                <span class="text-xs tracking-widest text-zinc-500 block mb-1">PDLMC</span>
+                <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
+              </div>
+            </div>
+            <div id="modal-extra-info" class="text-zinc-600 text-[15.5px] space-y-2"></div>
+          </div>
+
+          <!-- Colonne droite : LES + -->
+          <div id="block-types" class="hidden" style="width: 60%">
+            <span class="text-xs tracking-widest text-zinc-500 block mb-1">LES +</span>
+            <div id="modal-types" class="flex flex-wrap gap-1"</div>
+          </div>
+
+        </div>
+</div>
+
+        <!-- Bouton Instagram -->
+        <a id="modal-ig" href="#" target="_blank"
+           class="block mt-4 mb-6 mx-auto w-4/5 bg-emerald-700 hover:bg-emerald-800 transition-all text-white text-center py-3 rounded-3xl font-semibold text-sm">
+          Voir la publication Instagram →
+        </a>
+
+      </div>
+    </div>
+  </div>
+  <!-- MODAL DONATION -->
+  <div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl flex flex-col">
+      <div class="p-4 overflow-y-auto flex-1">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-zinc-900">Nous payer une conso 🍺</h3>
+          <button onclick="closeDonationModal()" class="text-4xl leading-none text-zinc-400 hover:text-zinc-600">×</button>
+        </div>
+
+        <p class="text-zinc-600 mb-8 text-[15px]">Merci de soutenir l’équipe qui teste tous les bars de Nantes !</p>
+
+        <div class="grid grid-cols-3 gap-3 mb-8">
+          <button onclick="donate(5)" class="bg-emerald-100 hover:bg-emerald-200 active:bg-emerald-300 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">5 €</button>
+          <button onclick="donate(10)" class="bg-emerald-100 hover:bg-emerald-200 active:bg-emerald-300 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">10 €</button>
+          <button onclick="donate(20)" class="bg-emerald-100 hover:bg-emerald-200 active:bg-emerald-300 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">20 €</button>
+        </div>
+
+        <div class="flex gap-3 items-stretch">
+          <input id="custom-amount" type="number" placeholder="Autre montant" 
+                 class="flex-1 border border-zinc-300 rounded-3xl px-5 py-3.5 text-center text-lg focus:outline-none focus:border-emerald-500 h-12">
+          <button onclick="donateCustom()" 
+                  class="bg-emerald-700 hover:bg-emerald-800 text-white px-8 rounded-3xl font-semibold whitespace-nowrap min-w-[100px] text-lg h-12 flex items-center justify-center">
+            Donner
+          </button>
+        </div>
+
+        <p class="text-center text-xs text-zinc-400 mt-8">Paiement simulé (démo)</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
