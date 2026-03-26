@@ -92,6 +92,10 @@
   background: transparent; pointer-events: none;
   -webkit-appearance: none; appearance: none; height: 4px; outline: none;
 }
+#price-min-slider { z-index: 3; }
+#price-max-slider { z-index: 4; }
+#price-min-slider::-webkit-slider-thumb { z-index: 3; }
+#price-max-slider::-webkit-slider-thumb { z-index: 4; }
 .dual-range input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; pointer-events: all;
   width: 20px; height: 20px; background: #059669; border-radius: 50%;
