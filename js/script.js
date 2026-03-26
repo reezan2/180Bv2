@@ -306,16 +306,29 @@ function updatePriceDisplay() {
   if (maxLabel) maxLabel.textContent = filterState.priceMax.toFixed(1) + '€';
 }
 
+// ✅ REMPLACER les 2 fonctions
 function onPriceMinChange(val) {
   const v = parseFloat(val);
-  if (v >= filterState.priceMax) { document.getElementById('price-min-slider').value = filterState.priceMax - 0.5; return; }
-  filterState.priceMin = v; updatePriceDisplay(); filterMarkers();
+  if (v >= filterState.priceMax) {
+    document.getElementById('price-min-slider').value = filterState.priceMax - 0.5;
+    return;
+  }
+  filterState.priceMin = v;
+  document.getElementById('price-min-slider').style.zIndex = 5;
+  document.getElementById('price-max-slider').style.zIndex = 4;
+  updatePriceDisplay(); filterMarkers();
 }
 
 function onPriceMaxChange(val) {
   const v = parseFloat(val);
-  if (v <= filterState.priceMin) { document.getElementById('price-max-slider').value = filterState.priceMin + 0.5; return; }
-  filterState.priceMax = v; updatePriceDisplay(); filterMarkers();
+  if (v <= filterState.priceMin) {
+    document.getElementById('price-max-slider').value = filterState.priceMin + 0.5;
+    return;
+  }
+  filterState.priceMax = v;
+  document.getElementById('price-max-slider').style.zIndex = 5;
+  document.getElementById('price-min-slider').style.zIndex = 4;
+  updatePriceDisplay(); filterMarkers();
 }
 
 function onFilterChange() {
