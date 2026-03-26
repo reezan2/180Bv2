@@ -185,7 +185,12 @@ function showBarModal(bar) {
 function renderModalInfo(bar) {
   const typesContainer = document.getElementById('modal-types');
   typesContainer.innerHTML = '';
-
+const blockTypes = document.getElementById('block-types');
+if (bar.types && bar.types.length > 0) {
+  blockTypes.classList.remove('hidden');
+} else {
+  blockTypes.classList.add('hidden');
+}
   if (bar.types && bar.types.length > 0) {
     bar.types.forEach(type => {
       const img = document.createElement('img');
