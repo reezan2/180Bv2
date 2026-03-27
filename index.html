@@ -58,7 +58,10 @@
   position: fixed; top: 64px; left: -310px;
   width: 290px; height: calc(100vh - 64px);
   background: #fef8f5; z-index: 3000;
-  transition: left 0.3s ease; overflow-y: auto;
+  transition: left 0.3s ease;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   box-shadow: 4px 0 20px rgba(0,0,0,0.12);
 }
 #filter-panel.open { left: 0; }
