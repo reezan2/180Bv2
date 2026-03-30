@@ -346,10 +346,17 @@ function showSuggestions(input) {
     item.className = 'px-4 py-2 hover:bg-emerald-100 cursor-pointer text-zinc-900';
     item.textContent = bar.name;
 item.onclick = () => {
-  map.setView([bar.lat, bar.lng], 16, { animate: true, duration: 0.8 });
-  setTimeout(() => showBarModal(bar), 900);
-  document.getElementById('search-bar').value = '';
-  suggestionsDiv.classList.add('hidden');
+    const targetZoom = Math.max(map.getZoom(), 17); // au moins zoom 17, ou plus si déjà plus haut
+
+    map.flyTo([bar.lat, bar.lng], targetZoom, {
+        animate: true,
+        duration: 1
+    });
+
+    setTimeout(() => showBarModal(bar), 1100);
+
+    document.getElementById('search-bar').value = '';
+    suggestionsDiv.classList.add('hidden');
 };
     suggestionsDiv.appendChild(item);
   });
