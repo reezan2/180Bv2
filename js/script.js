@@ -345,11 +345,12 @@ function showSuggestions(input) {
     const item = document.createElement('div');
     item.className = 'px-4 py-2 hover:bg-emerald-100 cursor-pointer text-zinc-900';
     item.textContent = bar.name;
-    item.onclick = () => {
-      showBarModal(bar);
-      document.getElementById('search-bar').value = '';
-      suggestionsDiv.classList.add('hidden');
-    };
+item.onclick = () => {
+  map.setView([bar.lat, bar.lng], 16, { animate: true, duration: 0.8 });
+  setTimeout(() => showBarModal(bar), 900);
+  document.getElementById('search-bar').value = '';
+  suggestionsDiv.classList.add('hidden');
+};
     suggestionsDiv.appendChild(item);
   });
 
