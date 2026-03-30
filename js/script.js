@@ -104,7 +104,14 @@ function updatePriceDisplay() {
 
 // Initialize map with Leaflet
 function initMap() {
-  map = L.map('map', { zoomControl: true }).setView([47.2184, -1.5536], 13.5);
+
+map = L.map('map', {
+  zoomControl: true,
+  preferCanvas: true,
+  fadeAnimation: false,
+  zoomAnimation: false,
+  markerZoomAnimation: false
+}).setView([47.2184, -1.5536], 13.5);
 
   L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=8b46d9f2ad30440aac72699d4746657c', {
     attribution: '&copy; Thunderforest & OpenStreetMap',
