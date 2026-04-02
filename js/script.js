@@ -473,3 +473,4 @@ document.addEventListener('keydown', e => {
     document.getElementById('donation-modal').classList.add('hidden');
   }
 });
+});
