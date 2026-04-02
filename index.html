@@ -139,27 +139,24 @@
       </div>
 
       <!-- Barre de recherche (prend l'espace restant) -->
-<div class="flex-1 max-w-md mx-2">
-  <input id="search-bar" type="text" placeholder="Rechercher un bar..." onfocus="showSuggestions('')"
-    class="w-full h-10 bg-white/20 rounded-full px-5 text-white placeholder-white/70 focus:outline-none focus:bg-white/30 text-sm"
-  >
-        <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden z-50"></div>
-      </div>
+<div class="flex-1 max-w-md mx-2 relative">
+  <input id="search-bar" ...>
+  <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden z-50"></div>
+</div>
 
       <!-- Boutons droite -->
       <div class="flex items-center gap-2 shrink-0">
-  <a href="https://www.instagram.com/nantes_en_180_bars" target="_blank" 
-   class="flex items-center justify-center hover:opacity-80 transition"
-   style="width:36px;height:36px">
-  <img src="assets/LogoInstagram.png" alt="Instagram" 
-       style="width:36px;height:36px;object-fit:contain;display:block">
+<!-- ✅ REMPLACE les deux boutons -->
+<a href="https://www.instagram.com/nantes_en_180_bars" target="_blank"
+   style="width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center">
+  <img src="assets/LogoInstagram.png" alt="Instagram"
+       style="width:32px;height:32px;object-fit:contain;display:block;flex-shrink:0">
 </a>
 
-<button onclick="openDonationModal()" 
-        class="bg-amber-300 hover:bg-amber-400 transition rounded-2xl flex items-center justify-center shadow"
-        style="width:36px;height:36px">
-  <img src="assets/Donation.png" 
-       style="width:36px;height:36px;object-fit:contain;display:block">
+<button onclick="openDonationModal()"
+        style="width:32px;height:32px;flex-shrink:0;background:#fcd34d;border:none;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+  <img src="assets/Donation.png"
+       style="width:22px;height:22px;object-fit:contain;display:block">
 </button>
       </div>
     </div>
@@ -176,49 +173,53 @@
       <!-- Photo -->
       <img id="modal-photo" class="w-full h-auto bg-zinc-200" alt="">
 
-      <div class="p-5">
+<div class="p-5">
 
-        <!-- Titre + croix -->
-        <div class="flex justify-between items-center mb-4">
-          <h2 id="modal-name" class="text-2xl font-bold text-zinc-900"></h2>
-          <button onclick="closeModal()" class="text-2xl leading-none text-zinc-400 hover:text-zinc-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-zinc-100">×</button>
+  <!-- Titre + croix -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 id="modal-name" class="text-2xl font-bold text-zinc-900"></h2>
+    <button onclick="closeModal()" class="text-2xl leading-none text-zinc-400 hover:text-zinc-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-zinc-100">×</button>
+  </div>
+
+  <!-- NOTE + PDLMC + LES + -->
+  <div class="flex gap-4 mb-4">
+
+    <!-- Colonne gauche : NOTE + PDLMC + HAPPY HOURS -->
+    <div class="flex flex-col gap-3" style="width:40%">
+      <div class="flex items-start gap-4">
+        <div id="block-rating">
+          <span class="text-xs tracking-widest text-zinc-500 block mb-1">NOTE</span>
+          <div id="modal-rating" class="text-5xl font-black leading-none"></div>
         </div>
-
-        <!-- Description -->
-        <p id="modal-desc" class="text-zinc-600 text-[15px] mb-4"></p>
-
-  <div class="flex gap-4">
-
-          <!-- Colonne gauche -->
-          <div class="flex flex-col gap-3" style="width: 40%">
-            <div class="flex items-start gap-4">
-              <div id="block-rating">
-                <span class="text-xs tracking-widest text-zinc-500 block mb-1">NOTE</span>
-                <div id="modal-rating" class="text-5xl font-black leading-none"></div>
-              </div>
-              <div id="block-price">
-                <span class="text-xs tracking-widest text-zinc-500 block mb-1">PDLMC</span>
-                <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
-              </div>
-            </div>
-            <div id="modal-extra-info" class="text-zinc-600 text-[15.5px] space-y-2"></div>
-          </div>
-
-          <!-- Colonne droite : LES + -->
-          <div id="block-types" class="hidden" style="width: 60%">
-            <span class="text-xs tracking-widest text-zinc-500 block mb-1">LES +</span>
-            <div id="modal-types" class="flex flex-wrap"></div>
-          </div>
-
+        <div id="block-price">
+          <span class="text-xs tracking-widest text-zinc-500 block mb-1">PDLMC</span>
+          <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
         </div>
-
-        <!-- Bouton Instagram -->
-        <a id="modal-ig" href="#" target="_blank"
-           class="block mt-6 bg-emerald-700 hover:bg-emerald-800 transition-all text-white text-center py-3 rounded-3xl font-semibold text-sm">
-          Voir la publication Instagram →
-        </a>
-
       </div>
+      <div id="modal-extra-info" class="text-zinc-600 text-[15.5px] space-y-2"></div>
+    </div>
+
+    <!-- Colonne droite : LES + et FERMETURE -->
+    <div style="width:60%" class="flex flex-col gap-3">
+      <div id="block-types" class="hidden">
+        <span class="text-xs tracking-widest text-zinc-500 block mb-1">LES +</span>
+        <div id="modal-types" class="flex flex-wrap"></div>
+      </div>
+      <div id="modal-closesAt"></div>
+    </div>
+
+  </div>
+
+  <!-- Description -->
+  <p id="modal-desc" class="text-zinc-600 text-[15px] mb-4"></p>
+
+  <!-- Bouton Instagram -->
+  <a id="modal-ig" href="#" target="_blank"
+     class="block mt-2 mb-6 mx-auto w-4/5 bg-emerald-700 hover:bg-emerald-800 transition-all text-white text-center py-3 rounded-3xl font-semibold text-sm">
+    Voir la publication Instagram →
+  </a>
+
+</div>
     </div>
   </div>
 </div>
