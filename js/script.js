@@ -442,7 +442,23 @@ function resetFilters() {
   document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
   filterMarkers();
 }
-
+function geolocate() {
+  if (!navigator.geolocation) {
+    alert("La géolocalisation n'est pas supportée par votre navigateur.");
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude, longitude } = pos.coords;
+      map.flyTo([latitude, longitude], 16, { animate: true, duration: 1 });
+    },
+    err => {
+      alert("Impossible d'obtenir votre position. Vérifiez les permissions.");
+    },
+    { enableHighAccuracy: true, timeout: 8000 }
+  );
+}
+  
 // ==================== EVENT LISTENERS ====================
 window.addEventListener('load', initApp);
 
