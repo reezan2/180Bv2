@@ -119,6 +119,11 @@
     #filter-panel { z-index: 5000 !important; }
 #filter-overlay { z-index: 4999 !important; }
   </style>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#065f46">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="180 Bars">
 </head>
 <body class="bg-zinc-50">
 
@@ -332,5 +337,10 @@
   </div>
 
   <script src="js/script.js" defer></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/180Bv2/sw.js');
+  }
+</script>
 </body>
 </html>
