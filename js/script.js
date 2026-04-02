@@ -128,12 +128,6 @@ map = L.map('map', {
   });
 
   // Add all bar markers
-const PRIORITY = { 'pépite': 0, 'A': 1, 'B': 2, 'C': 3, 'D': 4 };
-const sortedBars = [...bars].sort((a, b) => {
-  const pa = a.isPépite ? 0 : (PRIORITY[a.rating] ?? 5);
-  const pb = b.isPépite ? 0 : (PRIORITY[b.rating] ?? 5);
-  return pb - pa; // les plus basses priorités d'abord = pépites au dessus
-});
 const PRIORITY = { 'A': 4, 'B': 3, 'C': 2, 'D': 1 };
 const sortedBars = [...bars].sort((a, b) => {
   const pa = a.isPépite ? 5 : (PRIORITY[a.rating] ?? 0);
@@ -206,10 +200,9 @@ function showBarModal(bar) {
   document.getElementById('modal-ig').href = bar.ig_link;
 const photoEl = document.getElementById('modal-photo');
 photoEl.loading = 'lazy';
-photoEl.src = bar.photos && bar.photos[0] ? bar.photos[0] : 'https://placehold.co/800x600';
-    ? bar.photos[0]
-    : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
-
+photoEl.src = bar.photos && bar.photos[0]
+  ? bar.photos[0]
+  : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
   renderModalInfo(bar);
 
   document.getElementById('bar-modal').classList.remove('hidden');
