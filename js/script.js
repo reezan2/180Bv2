@@ -111,7 +111,9 @@ map = L.map('map', {
   preferCanvas: true,
   fadeAnimation: false,
   zoomAnimation: false,
-  markerZoomAnimation: false
+  markerZoomAnimation: false,
+  minZoom: 12,  // ← ajoute cette ligne
+  maxZoom: 19
 }).setView([47.2184, -1.5536], 13.5);
 
   L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=8b46d9f2ad30440aac72699d4746657c', {
@@ -202,7 +204,9 @@ function showBarModal(bar) {
   document.getElementById('modal-desc').innerHTML = (bar.description || '') + ' <i>... lire la suite sur Instagram</i>';
 
   document.getElementById('modal-ig').href = bar.ig_link;
-  document.getElementById('modal-photo').src = bar.photos && bar.photos[0]
+const photoEl = document.getElementById('modal-photo');
+photoEl.loading = 'lazy';
+photoEl.src = bar.photos && bar.photos[0] ? bar.photos[0] : 'https://placehold.co/800x600';
     ? bar.photos[0]
     : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
 
@@ -400,19 +404,23 @@ function parseHour(closesAt) {
 }
 
 // Filter markers based on current filter state
+let _filterTimeout;
 function filterMarkers() {
-  markers.forEach(({ marker, bar }) => {
-    const price = parsePrice(bar.pdlmc_price);
-    const typeOk = filterState.types.length === 0 || (bar.types && filterState.types.some(t => bar.types.includes(t)));
-    const hhOk = !filterState.happyHour || bar.hasHappyHour === true;
-    const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
-    const h = parseHour(bar.closesAt);
-    const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
-    const noteOk = filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
-    const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
-    if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
-    else { if (map.hasLayer(marker)) map.removeLayer(marker); }
-  });
+  clearTimeout(_filterTimeout);
+  _filterTimeout = setTimeout(() => {
+    markers.forEach(({ marker, bar }) => {
+      const price = parsePrice(bar.pdlmc_price);
+      const typeOk = filterState.types.length === 0 || (bar.types && filterState.types.some(t => bar.types.includes(t)));
+      const hhOk = !filterState.happyHour || bar.hasHappyHour === true;
+      const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
+      const h = parseHour(bar.closesAt);
+      const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
+      const noteOk = filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
+      const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
+      if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
+      else { if (map.hasLayer(marker)) map.removeLayer(marker); }
+    });
+  }, 80);
 }
 
 function onFilterChange() {
