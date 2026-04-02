@@ -245,7 +245,7 @@ if (closesAtEl) {
       <span class="text-zinc-800">${bar.closesAt}</span>
     </div>` : '';
 }
-
+}
 // ==================== FILTER UI INITIALIZATION ====================
 function initFilterUI() {
   // Type filters
