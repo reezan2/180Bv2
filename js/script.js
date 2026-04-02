@@ -471,7 +471,5 @@ document.addEventListener('keydown', e => {
   if (e.key === "Escape") {
     document.getElementById('bar-modal').classList.add('hidden');
     document.getElementById('donation-modal').classList.add('hidden');
-  }
-});
-});
+}
 });
