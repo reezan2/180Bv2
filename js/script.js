@@ -132,26 +132,34 @@ const sortedBars = [...bars].sort((a, b) => {
   const pb = b.isPépite ? 0 : (PRIORITY[b.rating] ?? 5);
   return pb - pa; // les plus basses priorités d'abord = pépites au dessus
 });
+const PRIORITY = { 'A': 4, 'B': 3, 'C': 2, 'D': 1 };
+const sortedBars = [...bars].sort((a, b) => {
+  const pa = a.isPépite ? 5 : (PRIORITY[a.rating] ?? 0);
+  const pb = b.isPépite ? 5 : (PRIORITY[b.rating] ?? 0);
+  return pa - pb; // D en premier (en dessous), Pépite en dernier (au dessus)
+});
+
 sortedBars.forEach(bar => {
-    let marker;
-
-    if (bar.isPépite) {
-      marker = L.marker([bar.lat, bar.lng], { icon: pepiteIcon });
-    } else {
-      const html = `<div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-black text-2xl shadow-lg border-2 border-white" style="background-color:${bar.color}">${bar.rating}</div>`;
-      const icon = L.divIcon({
-        className: 'custom-marker',
-        html: html,
-        iconSize: [36, 36],
-        iconAnchor: [18, 18]
-      });
-      marker = L.marker([bar.lat, bar.lng], { icon });
-    }
-
-    marker.on('click', () => showBarModal(bar));
-    marker.addTo(map);
-    markers.push({ marker, bar });
-  });
+  let marker;
+  if (bar.isPépite) {
+    marker = L.marker([bar.lat, bar.lng], { icon: pepiteIcon });
+  } else {
+    const html = `<svg width="36" height="36" viewBox="0 0 36 36">
+      <circle cx="18" cy="18" r="17" fill="${bar.color}" stroke="white" stroke-width="2"/>
+      <text x="18" y="23" text-anchor="middle" fill="white" font-size="14" font-weight="900" font-family="sans-serif">${bar.rating}</text>
+    </svg>`;
+    const icon = L.divIcon({
+      className: 'custom-marker',
+      html: html,
+      iconSize: [36, 36],
+      iconAnchor: [18, 18]
+    });
+    marker = L.marker([bar.lat, bar.lng], { icon });
+  }
+  marker.on('click', () => showBarModal(bar));
+  marker.addTo(map);
+  markers.push({ marker, bar }); // ← le markers.push est bien là
+});
 
   // Add filter button control
   const FilterControl = L.Control.extend({
