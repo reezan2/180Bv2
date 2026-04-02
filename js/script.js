@@ -151,8 +151,10 @@ const html = `<svg width="36" height="36" viewBox="0 0 36 36">
     });
     marker = L.marker([bar.lat, bar.lng], { icon });
   }
-  marker.on('click', () => showBarModal(bar));
-  marker.addTo(map);
+const zIdx = bar.isPépite ? 1000 : ({ 'A': 400, 'B': 300, 'C': 200, 'D': 100 }[bar.rating] ?? 50);
+marker.setZIndexOffset(zIdx);
+marker.on('click', () => showBarModal(bar));
+marker.addTo(map);
   markers.push({ marker, bar }); // ← le markers.push est bien là
 });
 
@@ -442,23 +444,42 @@ function resetFilters() {
   document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
   filterMarkers();
 }
+let geoMarker = null;
+
 function geolocate() {
   if (!navigator.geolocation) {
-    alert("La géolocalisation n'est pas supportée par votre navigateur.");
+    alert("Géolocalisation non supportée.");
     return;
   }
   navigator.geolocation.getCurrentPosition(
     pos => {
       const { latitude, longitude } = pos.coords;
+
+      // Supprime l'ancien point si existant
+      if (geoMarker) map.removeLayer(geoMarker);
+
+      // Crée un point bleu style GPS
+      const blueIcon = L.divIcon({
+        className: '',
+        html: `<div style="
+          width:16px;height:16px;
+          background:#2563eb;
+          border:3px solid white;
+          border-radius:50%;
+          box-shadow:0 0 0 4px rgba(37,99,235,0.25)">
+        </div>`,
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+
+      geoMarker = L.marker([latitude, longitude], { icon: blueIcon, zIndexOffset: 2000 });
+      geoMarker.addTo(map);
       map.flyTo([latitude, longitude], 16, { animate: true, duration: 1 });
     },
-    err => {
-      alert("Impossible d'obtenir votre position. Vérifiez les permissions.");
-    },
+    () => alert("Impossible d'obtenir votre position."),
     { enableHighAccuracy: true, timeout: 8000 }
   );
 }
-  
 // ==================== EVENT LISTENERS ====================
 window.addEventListener('load', initApp);
 
