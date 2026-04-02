@@ -108,7 +108,6 @@ function initMap() {
 
 map = L.map('map', {
   zoomControl: true,
-  preferCanvas: true,
   fadeAnimation: false,
   zoomAnimation: false,
   markerZoomAnimation: false,
@@ -140,10 +139,10 @@ sortedBars.forEach(bar => {
   if (bar.isPépite) {
     marker = L.marker([bar.lat, bar.lng], { icon: pepiteIcon });
   } else {
-    const html = `<svg width="36" height="36" viewBox="0 0 36 36">
-      <circle cx="18" cy="18" r="17" fill="${bar.color}" stroke="white" stroke-width="2"/>
-      <text x="18" y="23" text-anchor="middle" fill="white" font-size="14" font-weight="900" font-family="sans-serif">${bar.rating}</text>
-    </svg>`;
+const html = `<svg width="36" height="36" viewBox="0 0 36 36">
+  <circle cx="18" cy="18" r="17" fill="${bar.color}" stroke="white" stroke-width="2"/>
+  <text x="18" y="24" text-anchor="middle" dominant-baseline="central" fill="white" font-size="20" font-weight="900" font-family="sans-serif">${bar.rating}</text>
+</svg>`;
     const icon = L.divIcon({
       className: 'custom-marker',
       html: html,
@@ -228,20 +227,23 @@ if (bar.types && bar.types.length > 0) {
     });
   }
 
-  const infoContainer = document.getElementById('modal-extra-info');
-  let html = '';
-  if (bar.hasHappyHour === true) html += `
-    <div class="flex items-baseline gap-2">
-      <span class="text-xs tracking-widest text-zinc-500">HAPPY HOURS</span>
-      <span class="text-zinc-800">${bar.happyHourTimes || ''}</span>
-    </div>`;
+const infoContainer = document.getElementById('modal-extra-info');
+let html = '';
+if (bar.hasHappyHour === true) html += `
+  <div class="flex items-baseline gap-2">
+    <span class="text-xs tracking-widest text-zinc-500">HAPPY HOURS</span>
+    <span class="text-zinc-800">${bar.happyHourTimes || ''}</span>
+  </div>`;
+infoContainer.innerHTML = html;
 
-  if (bar.closesAt) html += `
+// Fermeture dans colonne droite
+const closesAtEl = document.getElementById('modal-closesAt');
+if (closesAtEl) {
+  closesAtEl.innerHTML = bar.closesAt ? `
     <div class="flex items-baseline gap-2">
       <span class="text-xs tracking-widest text-zinc-500">FERMETURE</span>
       <span class="text-zinc-800">${bar.closesAt}</span>
-    </div>`;
-  infoContainer.innerHTML = html;
+    </div>` : '';
 }
 
 // ==================== FILTER UI INITIALIZATION ====================
