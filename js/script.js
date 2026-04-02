@@ -10,6 +10,7 @@ let filterState = {
   notes: ['Pépite', 'A', 'B', 'C', 'D']
 };
 let priceRange = { min: 0, max: 20 };
+let recentSearches = [];
 
 const BAR_TYPES = ['Tous', 'Bar à fléchette', 'Bar dansant', 'Bar à cocktail', 'Guinguette', 'Pub', 'Bar à jeux', 'Terrasse au soleil'];
 const TYPE_MAP = {
@@ -125,7 +126,13 @@ map = L.map('map', {
   });
 
   // Add all bar markers
-  bars.forEach(bar => {
+const PRIORITY = { 'pépite': 0, 'A': 1, 'B': 2, 'C': 3, 'D': 4 };
+const sortedBars = [...bars].sort((a, b) => {
+  const pa = a.isPépite ? 0 : (PRIORITY[a.rating] ?? 5);
+  const pb = b.isPépite ? 0 : (PRIORITY[b.rating] ?? 5);
+  return pb - pa; // les plus basses priorités d'abord = pépites au dessus
+});
+sortedBars.forEach(bar => {
     let marker;
 
     if (bar.isPépite) {
@@ -337,33 +344,42 @@ function showSuggestions(input) {
   suggestionsDiv.innerHTML = '';
   suggestionsDiv.classList.add('hidden');
 
-  if (input.length < 2) return;
+  let results = [];
 
-  const filteredBars = bars.filter(bar => bar.name.toLowerCase().includes(input.toLowerCase()));
+  if (input.length === 0) {
+    // Affiche les recherches récentes
+    if (recentSearches.length === 0) return;
+    results = recentSearches.slice().reverse();
+  } else if (input.length >= 2) {
+    results = bars.filter(bar => bar.name.toLowerCase().includes(input.toLowerCase()));
+  } else {
+    return;
+  }
 
-  filteredBars.forEach(bar => {
+  results.forEach(bar => {
     const item = document.createElement('div');
-    item.className = 'px-4 py-2 hover:bg-emerald-100 cursor-pointer text-zinc-900';
-    item.textContent = bar.name;
-item.onclick = () => {
-    const targetZoom = Math.max(map.getZoom(), 17); // au moins zoom 17, ou plus si déjà plus haut
+    item.className = 'px-4 py-2 hover:bg-emerald-100 cursor-pointer text-zinc-900 flex items-center gap-2';
+    if (input.length === 0) {
+      item.innerHTML = `<span class="text-zinc-400 text-xs">↩</span> ${bar.name}`;
+    } else {
+      item.textContent = bar.name;
+    }
+    item.onclick = () => {
+      // Ajoute aux recherches récentes (sans doublon, max 5)
+      recentSearches = recentSearches.filter(b => b.name !== bar.name);
+      recentSearches.push(bar);
+      if (recentSearches.length > 5) recentSearches.shift();
 
-    map.flyTo([bar.lat, bar.lng], targetZoom, {
-        animate: true,
-        duration: 1
-    });
-
-    setTimeout(() => showBarModal(bar), 1100);
-
-    document.getElementById('search-bar').value = '';
-    suggestionsDiv.classList.add('hidden');
-};
+      map.flyTo([bar.lat, bar.lng], 19, { animate: true, duration: 1 });
+      setTimeout(() => showBarModal(bar), 1100);
+      document.getElementById('search-bar').value = '';
+      suggestionsDiv.classList.add('hidden');
+    };
     suggestionsDiv.appendChild(item);
   });
 
-  if (filteredBars.length > 0) suggestionsDiv.classList.remove('hidden');
+  if (results.length > 0) suggestionsDiv.classList.remove('hidden');
 }
-
 // ==================== HELPER FUNCTIONS ====================
 function parsePrice(str) {
   if (!str) return 0;
