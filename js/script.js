@@ -44,6 +44,7 @@ async function initApp() {
     initMap();
     initFilters();
     initFilterUI();
+    geolocate(false);
     console.log('✅ App initialized successfully');
   } catch (error) {
     console.error('❌ Error initializing app:', error);
@@ -180,7 +181,22 @@ marker.addTo(map);
   new FilterControl({ position: 'topleft' }).addTo(map);
   console.log('✅ Map ready with clickable markers');
 }
-
+const GeoControl = L.Control.extend({
+  onAdd: function() {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    const btn = L.DomUtil.create('button', 'leaflet-filter-btn', container);
+    btn.title = 'Ma position';
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+      <circle cx="12" cy="12" r="8" stroke-opacity="0.4"/>
+    </svg>`;
+    L.DomEvent.on(btn, 'click', e => { L.DomEvent.stopPropagation(e); geolocate(true); });
+    L.DomEvent.disableClickPropagation(container);
+    return container;
+  }
+});
+new GeoControl({ position: 'topleft' }).addTo(map);
 // Show bar details modal
 function showBarModal(bar) {
   currentBar = bar;
@@ -446,37 +462,28 @@ function resetFilters() {
 }
 let geoMarker = null;
 
-function geolocate() {
+let geoMarker = null;
+
+function geolocate(showAlert = true) {
   if (!navigator.geolocation) {
-    alert("Géolocalisation non supportée.");
+    if (showAlert) alert("Géolocalisation non supportée.");
     return;
   }
   navigator.geolocation.getCurrentPosition(
     pos => {
       const { latitude, longitude } = pos.coords;
-
-      // Supprime l'ancien point si existant
       if (geoMarker) map.removeLayer(geoMarker);
-
-      // Crée un point bleu style GPS
       const blueIcon = L.divIcon({
         className: '',
-        html: `<div style="
-          width:16px;height:16px;
-          background:#2563eb;
-          border:3px solid white;
-          border-radius:50%;
-          box-shadow:0 0 0 4px rgba(37,99,235,0.25)">
-        </div>`,
+        html: `<div style="width:16px;height:16px;background:#2563eb;border:3px solid white;border-radius:50%;box-shadow:0 0 0 4px rgba(37,99,235,0.25)"></div>`,
         iconSize: [16, 16],
         iconAnchor: [8, 8]
       });
-
       geoMarker = L.marker([latitude, longitude], { icon: blueIcon, zIndexOffset: 2000 });
       geoMarker.addTo(map);
       map.flyTo([latitude, longitude], 16, { animate: true, duration: 1 });
     },
-    () => alert("Impossible d'obtenir votre position."),
+    () => { if (showAlert) alert("Impossible d'obtenir votre position."); },
     { enableHighAccuracy: true, timeout: 8000 }
   );
 }
