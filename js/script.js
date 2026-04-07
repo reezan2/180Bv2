@@ -12,11 +12,11 @@ let filterState = {
 let priceRange = { min: 0, max: 20 };
 let recentSearches = [];
 
-const BAR_TYPES = ['Tous', 'Bar à fléchette', 'Bar dansant', 'Bar à cocktail', 'Guinguette', 'Pub', 'Bar à jeux', 'Terrasse au soleil'];
+const BAR_TYPES = ['Tous', 'Bar à fléchette', 'Bar dansant', 'Bar à cocktail', 'Guinguette', 'Pub', 'Bar à jeux', 'Terrasse au soleil', 'PMU'];
 const TYPE_MAP = {
   'Bar à fléchette': 'flechettes', 'Bar dansant': 'bar-dansant',
   'Bar à cocktail': 'cocktail', 'Guinguette': 'guinguette',
-  'Pub': 'pub', 'Bar à jeux': 'jeux', 'Terrasse au soleil': 'terrasse-au-soleil'
+  'Pub': 'pub', 'Bar à jeux': 'jeux', 'Terrasse au soleil': 'terrasse-au-soleil', 'PMU': 'pmu'
 };
 const NOTE_COLORS = {
   'A': { bg: '#306629', text: '#fef8f5' }, 'B': { bg: '#b5dabe', text: '#fef8f5' },
@@ -136,22 +136,29 @@ const sortedBars = [...bars].sort((a, b) => {
 });
 
 sortedBars.forEach(bar => {
-  let marker;
-  if (bar.isPépite) {
-    marker = L.marker([bar.lat, bar.lng], { icon: pepiteIcon });
-  } else {
-const html = `<svg width="36" height="36" viewBox="0 0 36 36">
-  <circle cx="18" cy="18" r="17" fill="${bar.color}" stroke="white" stroke-width="2"/>
-  <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="white" font-size="20" font-weight="900" font-family="sans-serif">${bar.rating}</text>
-</svg>`;
-    const icon = L.divIcon({
-      className: 'custom-marker',
-      html: html,
-      iconSize: [36, 36],
-      iconAnchor: [18, 18]
-    });
-    marker = L.marker([bar.lat, bar.lng], { icon });
-  }
+let marker;
+if (bar.isPépite) {
+  marker = L.marker([bar.lat, bar.lng], { icon: pepiteIcon });
+} else if (bar.types && bar.types.includes('pmu')) {
+  const pmuIcon = L.icon({
+    iconUrl: './assets/PMU.png',
+    iconSize: [42, 42],
+    iconAnchor: [21, 21]
+  });
+  marker = L.marker([bar.lat, bar.lng], { icon: pmuIcon });
+} else {
+  const html = `<svg width="36" height="36" viewBox="0 0 36 36">
+    <circle cx="18" cy="18" r="17" fill="${bar.color}" stroke="white" stroke-width="2"/>
+    <text x="18" y="24" text-anchor="middle" dominant-baseline="central" fill="white" font-size="20" font-weight="900" font-family="sans-serif">${bar.rating}</text>
+  </svg>`;
+  const icon = L.divIcon({
+    className: 'custom-marker',
+    html: html,
+    iconSize: [36, 36],
+    iconAnchor: [18, 18]
+  });
+  marker = L.marker([bar.lat, bar.lng], { icon });
+}
 const zIdx = bar.isPépite ? 1000 : ({ 'A': 400, 'B': 300, 'C': 200, 'D': 100 }[bar.rating] ?? 50);
 marker.setZIndexOffset(zIdx);
 marker.on('click', () => showBarModal(bar));
@@ -428,7 +435,8 @@ function filterMarkers() {
       const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
       const h = parseHour(bar.closesAt);
       const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
-      const noteOk = filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
+const isPMU = bar.types && bar.types.includes('pmu');
+const noteOk = isPMU || filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
       const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
       if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
       else { if (map.hasLayer(marker)) map.removeLayer(marker); }
