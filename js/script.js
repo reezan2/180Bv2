@@ -210,10 +210,7 @@ console.log('✅ Map ready with clickable markers');
 // Show bar details modal
 function showBarModal(bar) {
   currentBar = bar;
-
   document.getElementById('modal-name').textContent = bar.name;
-
-// ✅ APRÈS
 const ratingEl = document.getElementById('modal-rating');
 const isPMU = bar.types && bar.types.includes('pmu');
 if (bar.isPépite) {
@@ -224,10 +221,8 @@ if (bar.isPépite) {
   ratingEl.textContent = bar.rating;
   ratingEl.style.color = bar.color || '#000';
 }
-
   document.getElementById('modal-price').textContent = bar.pdlmc_price;
   document.getElementById('modal-desc').innerHTML = (bar.description || '') + ' <i>... lire la suite sur Instagram</i>';
-
   document.getElementById('modal-ig').href = bar.ig_link;
 const photoEl = document.getElementById('modal-photo');
 photoEl.loading = 'lazy';
@@ -235,7 +230,6 @@ photoEl.src = bar.photos && bar.photos[0]
   ? bar.photos[0]
   : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
   renderModalInfo(bar);
-
   document.getElementById('bar-modal').classList.remove('hidden');
 }
 
@@ -324,8 +318,8 @@ if (note === 'Pépite') {
   btn.style.background = '#fef3c7';
   const img = document.createElement('img');
   img.src = './assets/Pepite.png';
-  img.style.width = '28px';
-  img.style.height = '28px';
+  img.style.width = '36px';
+  img.style.height = '36px';
   img.style.objectFit = 'contain';
   btn.appendChild(img);
 } else {
