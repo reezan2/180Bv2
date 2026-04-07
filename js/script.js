@@ -185,9 +185,8 @@ marker.addTo(map);
       return container;
     }
   });
-  new FilterControl({ position: 'topleft' }).addTo(map);
-  console.log('✅ Map ready with clickable markers');
-}
+new FilterControl({ position: 'topleft' }).addTo(map);
+
 const GeoControl = L.Control.extend({
   onAdd: function() {
     const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
@@ -204,6 +203,10 @@ const GeoControl = L.Control.extend({
   }
 });
 new GeoControl({ position: 'topleft' }).addTo(map);
+
+console.log('✅ Map ready with clickable markers');
+}
+
 // Show bar details modal
 function showBarModal(bar) {
   currentBar = bar;
