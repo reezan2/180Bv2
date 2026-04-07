@@ -118,6 +118,7 @@ map = L.map('map', {
 
   L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=8b46d9f2ad30440aac72699d4746657c', {
     attribution: '&copy; Thunderforest & OpenStreetMap',
+     minZoom: 14,
     maxZoom: 19
   }).addTo(map);
 
