@@ -469,9 +469,6 @@ function resetFilters() {
   filterMarkers();
 }
 let geoMarker = null;
-
-let geoMarker = null;
-
 function geolocate(showAlert = true) {
   if (!navigator.geolocation) {
     if (showAlert) alert("Géolocalisation non supportée.");
