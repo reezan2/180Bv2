@@ -2134,5 +2134,19 @@
          ],
          "isPépite":false
       }
+            {
+         "id":147,
+         "name":"Le Fer à Cheval",
+         "lat":47.23289102129243, 
+         "lng":-1.5654143417095316,
+         "pdlmc_price":"6€",
+         "description":"Le Fer à Cheval",
+         "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DK7N1gTsJ9Y/",
+         "photos":[
+            "photos/Feracheval.jpg"
+         ],
+         "isPépite":false,
+         "types": ["pmu"]
+      }
    ]
 }
