@@ -213,13 +213,17 @@ function showBarModal(bar) {
 
   document.getElementById('modal-name').textContent = bar.name;
 
-  const ratingEl = document.getElementById('modal-rating');
-  if (bar.isPépite) {
-    ratingEl.innerHTML = `<img src="./assets/Pepite.png" class="w-16 h-16" alt="Pépite">`;
-  } else {
-    ratingEl.textContent = bar.rating;
-    ratingEl.style.color = bar.color || '#000';
-  }
+// ✅ APRÈS
+const ratingEl = document.getElementById('modal-rating');
+const isPMU = bar.types && bar.types.includes('pmu');
+if (bar.isPépite) {
+  ratingEl.innerHTML = `<img src="./assets/Pepite.png" class="w-16 h-16" alt="Pépite">`;
+} else if (isPMU) {
+  ratingEl.innerHTML = `<img src="./assets/PMU.png" class="w-16 h-16" alt="PMU">`;
+} else {
+  ratingEl.textContent = bar.rating;
+  ratingEl.style.color = bar.color || '#000';
+}
 
   document.getElementById('modal-price').textContent = bar.pdlmc_price;
   document.getElementById('modal-desc').innerHTML = (bar.description || '') + ' <i>... lire la suite sur Instagram</i>';
@@ -255,24 +259,24 @@ if (bar.types && bar.types.length > 0) {
     });
   }
 
-const infoContainer = document.getElementById('modal-extra-info');
-let html = '';
-if (bar.hasHappyHour === true) html += `
-  <div class="flex items-baseline gap-2">
-    <span class="text-xs tracking-widest text-zinc-500">HAPPY HOURS</span>
-    <span class="text-zinc-800">${bar.happyHourTimes || ''}</span>
-  </div>`;
-infoContainer.innerHTML = html;
-}
-// Fermeture dans colonne droite
-const closesAtEl = document.getElementById('modal-closesAt');
-if (closesAtEl) {
-  closesAtEl.innerHTML = bar.closesAt ? `
+// ✅ APRÈS — tout dans la fonction, un seul } de fermeture
+  const infoContainer = document.getElementById('modal-extra-info');
+  let html = '';
+  if (bar.hasHappyHour === true) html += `
     <div class="flex items-baseline gap-2">
-      <span class="text-xs tracking-widest text-zinc-500">FERMETURE</span>
-      <span class="text-zinc-800">${bar.closesAt}</span>
-    </div>` : '';
-}
+      <span class="text-xs tracking-widest text-zinc-500">HAPPY HOURS</span>
+      <span class="text-zinc-800">${bar.happyHourTimes || ''}</span>
+    </div>`;
+  infoContainer.innerHTML = html;
+
+  const closesAtEl = document.getElementById('modal-closesAt');
+  if (closesAtEl) {
+    closesAtEl.innerHTML = bar.closesAt ? `
+      <div class="flex items-baseline gap-2">
+        <span class="text-xs tracking-widest text-zinc-500">FERMETURE</span>
+        <span class="text-zinc-800">${bar.closesAt}</span>
+      </div>` : '';
+  }
 }
 // ==================== FILTER UI INITIALIZATION ====================
 function initFilterUI() {
