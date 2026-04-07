@@ -6,5 +6,8 @@
   "background_color": "#fef8f5",
   "theme_color": "#065f46",
   "orientation": "portrait",
-<link rel="apple-touch-icon" href="assets/Logoapp180.png">
+"icons": [
+  { "src": "assets/Logoapp180.png", "sizes": "192x192", "type": "image/png" },
+  { "src": "assets/Logoapp180.png", "sizes": "512x512", "type": "image/png" }
+]
 }
