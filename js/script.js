@@ -112,13 +112,12 @@ map = L.map('map', {
   fadeAnimation: false,
   zoomAnimation: false,
   markerZoomAnimation: false,
-  minZoom: 14,  // ← ajoute cette ligne
+  minZoom: 16,  // ← ajoute cette ligne
   maxZoom: 19
 }).setView([47.2184, -1.5536], 13.5);
 
   L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=8b46d9f2ad30440aac72699d4746657c', {
     attribution: '&copy; Thunderforest & OpenStreetMap',
-     minZoom: 14,
     maxZoom: 19
   }).addTo(map);
 
