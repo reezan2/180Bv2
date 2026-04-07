@@ -263,7 +263,7 @@ if (bar.hasHappyHour === true) html += `
     <span class="text-zinc-800">${bar.happyHourTimes || ''}</span>
   </div>`;
 infoContainer.innerHTML = html;
-
+}
 // Fermeture dans colonne droite
 const closesAtEl = document.getElementById('modal-closesAt');
 if (closesAtEl) {
