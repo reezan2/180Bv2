@@ -149,7 +149,7 @@ if (bar.isPépite) {
 } else {
   const html = `<svg width="36" height="36" viewBox="0 0 36 36">
     <circle cx="18" cy="18" r="17" fill="${bar.color}" stroke="white" stroke-width="2"/>
-    <text x="18" y="24" text-anchor="middle" dominant-baseline="central" fill="white" font-size="20" font-weight="900" font-family="sans-serif">${bar.rating}</text>
+    <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="white" font-size="20" font-weight="900" font-family="sans-serif">${bar.rating}</text>
   </svg>`;
   const icon = L.divIcon({
     className: 'custom-marker',
