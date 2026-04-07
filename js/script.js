@@ -40,32 +40,10 @@ async function initApp() {
       filterState.priceMax = priceRange.max;
     }
 
-    // Initialize in correct order
     initMap();
     initFilters();
     initFilterUI();
     geolocate(false);
-    console.log('✅ App initialized successfully');
-  } catch (error) {
-    console.error('❌ Error initializing app:', error);
-  }
-}
-const GeoControl = L.Control.extend({
-  onAdd: function() {
-    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-    const btn = L.DomUtil.create('button', 'leaflet-filter-btn', container);
-    btn.title = 'Ma position';
-    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-      <circle cx="12" cy="12" r="3" fill="currentColor"/>
-      <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
-      <circle cx="12" cy="12" r="8" stroke-opacity="0.4"/>
-    </svg>`;
-    L.DomEvent.on(btn, 'click', e => { L.DomEvent.stopPropagation(e); geolocate(true); });
-    L.DomEvent.disableClickPropagation(container);
-    return container;
-  }
-});
-new GeoControl({ position: 'topleft' }).addTo(map);
     console.log('✅ App initialized successfully');
   } catch (error) {
     console.error('❌ Error initializing app:', error);
