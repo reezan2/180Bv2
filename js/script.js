@@ -45,8 +45,10 @@ async function initApp() {
     initFilters();
     initFilterUI();
     geolocate(false);
-      new FilterControl({ position: 'topleft' }).addTo(map);
-  console.log('✅ Map ready with clickable markers');
+    console.log('✅ App initialized successfully');
+  } catch (error) {
+    console.error('❌ Error initializing app:', error);
+  }
 }
 const GeoControl = L.Control.extend({
   onAdd: function() {
