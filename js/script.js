@@ -112,7 +112,7 @@ map = L.map('map', {
   fadeAnimation: false,
   zoomAnimation: false,
   markerZoomAnimation: false,
-  minZoom: 12,  // ← ajoute cette ligne
+  minZoom: 14,  // ← ajoute cette ligne
   maxZoom: 19
 }).setView([47.2184, -1.5536], 13.5);
 
