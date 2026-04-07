@@ -486,4 +486,5 @@ document.addEventListener('keydown', e => {
     document.getElementById('bar-modal').classList.add('hidden');
     document.getElementById('donation-modal').classList.add('hidden');
 }
-})
+});
+
