@@ -252,6 +252,7 @@ if (closesAtEl) {
     </div>` : '';
 }
 }
+}
 // ==================== FILTER UI INITIALIZATION ====================
 function initFilterUI() {
   // Type filters
