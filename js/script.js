@@ -185,9 +185,8 @@ marker.addTo(map);
       return container;
     }
   });
-  new FilterControl({ position: 'topleft' }).addTo(map);
-  console.log('✅ Map ready with clickable markers');
-}
+new FilterControl({ position: 'topleft' }).addTo(map);
+
 const GeoControl = L.Control.extend({
   onAdd: function() {
     const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
@@ -204,6 +203,10 @@ const GeoControl = L.Control.extend({
   }
 });
 new GeoControl({ position: 'topleft' }).addTo(map);
+
+console.log('✅ Map ready with clickable markers');
+}
+
 // Show bar details modal
 function showBarModal(bar) {
   currentBar = bar;
@@ -260,7 +263,7 @@ if (bar.hasHappyHour === true) html += `
     <span class="text-zinc-800">${bar.happyHourTimes || ''}</span>
   </div>`;
 infoContainer.innerHTML = html;
-
+}
 // Fermeture dans colonne droite
 const closesAtEl = document.getElementById('modal-closesAt');
 if (closesAtEl) {
@@ -469,8 +472,6 @@ function resetFilters() {
   filterMarkers();
 }
 let geoMarker = null;
-geoMarker = null;
-
 function geolocate(showAlert = true) {
   if (!navigator.geolocation) {
     if (showAlert) alert("Géolocalisation non supportée.");
