@@ -115,7 +115,10 @@ map = L.map('map', {
   minZoom: 5,  // ← ajoute cette ligne
   maxZoom: 19
 }).setView([47.2184, -1.5536], 13.5);
-
+map.on('click', () => {
+  document.getElementById('search-suggestions').classList.add('hidden');
+  document.getElementById('search-bar').blur();
+});
   L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=8b46d9f2ad30440aac72699d4746657c', {
     attribution: '&copy; Thunderforest & OpenStreetMap',
     maxZoom: 19
