@@ -223,7 +223,7 @@ function showBarModal(bar) {
 const ratingEl = document.getElementById('modal-rating');
 const isPMU = bar.types && bar.types.includes('pmu');
 if (bar.isPépite) {
-  ratingEl.innerHTML = `<img src="./assets/Pepite.png" class="w-16 h-16" alt="Pépite">`;
+ratingEl.innerHTML = `<img src="./assets/Pepite.png" style="width:48px;height:48px;object-fit:contain" alt="Pépite">`;
 } else if (isPMU) {
 ratingEl.innerHTML = `<img src="./assets/PMU.png" style="width:48px;height:48px;object-fit:contain" alt="PMU">`;
 } else {
