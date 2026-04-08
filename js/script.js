@@ -439,14 +439,12 @@ function closeDonationModal() {
 }
 
 function donate(amount) {
-  alert(`🎉 Merci pour ton don de ${amount} € !`);
   closeDonationModal();
+  window.open(`https://ko-fi.com/nantesen180bars`, '_blank');
 }
-
 function donateCustom() {
-  const val = document.getElementById('custom-amount').value;
-  if (val && parseFloat(val) > 0) donate(val);
-  else alert("Entre un montant valide 🙂");
+  closeDonationModal();
+  window.open('https://ko-fi.com/nantesen180bars', '_blank');
 }
 
 // ==================== SEARCH FUNCTION ====================
