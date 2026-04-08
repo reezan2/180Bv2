@@ -157,12 +157,12 @@
         <a href="https://www.instagram.com/nantes_en_180_bars" target="_blank"
            style="display:flex;align-items:center;opacity:1;transition:opacity 0.2s"
            onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-          <img src="assets/LogoInstagram.png" style="width:44px;height:44px;object-fit:contain;display:block">
+          <img src="assets/LogoInstagram.png" style="width:40px;height:40px;object-fit:contain;display:block">
         </a>
         <button onclick="openDonationModal()"
                 style="background:none;border:none;padding:0;cursor:pointer;display:flex;opacity:1;transition:opacity 0.2s"
                 onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-          <img src="assets/Donation.png" style="width:44px;height:44px;object-fit:contain;display:block">
+          <img src="assets/Donation.png" style="width:40px;height:40px;object-fit:contain;display:block">
         </button>
       </div>
 
@@ -305,20 +305,27 @@
 </div>
   <!-- MODAL DONATION -->
 <div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
-  <div class="bg-white rounded-3xl w-full overflow-hidden shadow-2xl mx-4" style="max-width:420px;max-height:90vh">
-    <div class="flex justify-between items-center p-5 border-b border-zinc-100">
-      <h3 class="text-xl font-bold text-zinc-900">Nous payer une conso 🍺</h3>
-      <button onclick="closeDonationModal()" class="text-3xl leading-none text-zinc-400 hover:text-zinc-600">×</button>
+  <div class="bg-white rounded-3xl w-full overflow-hidden shadow-2xl mx-4" style="max-width:420px">
+    <div class="p-5">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-zinc-900">Nous offrir une conso 🍺</h3>
+        <button onclick="closeDonationModal()" class="text-4xl leading-none text-zinc-400 hover:text-zinc-600">×</button>
+      </div>
+      <p class="text-zinc-600 mb-6 text-[15px]">Merci de soutenir l'équipe qui teste tous les bars de Nantes !</p>
+      <div class="grid grid-cols-3 gap-3 mb-4">
+        <button onclick="donate(5)" class="bg-emerald-100 hover:bg-emerald-200 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">5 €</button>
+        <button onclick="donate(10)" class="bg-emerald-100 hover:bg-emerald-200 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">10 €</button>
+        <button onclick="donate(20)" class="bg-emerald-100 hover:bg-emerald-200 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">20 €</button>
+      </div>
+      <div class="flex flex-col gap-3 mb-4">
+        <input id="custom-amount" type="number" placeholder="Autre montant (€)"
+               class="w-full border border-zinc-300 rounded-3xl px-5 py-3.5 text-center text-lg focus:outline-none focus:border-emerald-500 h-12">
+        <button onclick="donateCustom()"
+                class="w-full bg-emerald-700 hover:bg-emerald-800 text-white rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">
+          Donner
+        </button>
+      </div>
     </div>
-    <iframe id="kofi-iframe"
-      src="https://ko-fi.com/nantesen180bars/?hidefeed=true&widget=true&embed=true&preview=true"
-      style="width:100%;height:500px;border:none;display:block"
-      title="Ko-fi donation">
-    </iframe>
-    <p class="text-center text-xs text-zinc-400 py-3">
-  Problème d'affichage ? 
-  <a href="https://ko-fi.com/nantesen180bars" target="_blank" class="text-emerald-600 underline">Ouvrir Ko-fi</a>
-</p>
   </div>
 </div>
 
