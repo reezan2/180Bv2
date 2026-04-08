@@ -413,6 +413,16 @@ if (note === 'Pépite') {
       notesList.appendChild(btn);
     });
   }
+  // Swipe gauche pour fermer le panel filtre
+const panel = document.getElementById('filter-panel');
+let touchStartX = 0;
+panel.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+}, { passive: true });
+panel.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (dx < -60) toggleFilterPanel(); // swipe gauche de 60px = ferme
+}, { passive: true });
 }
 
 // ==================== MODAL FUNCTIONS ====================
