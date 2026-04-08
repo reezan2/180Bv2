@@ -44,7 +44,7 @@ async function initApp() {
     initMap();
     initFilters();
     initFilterUI();
-    geolocate(false);
+geolocateInit();
     console.log('✅ App initialized successfully');
   } catch (error) {
     console.error('❌ Error initializing app:', error);
@@ -112,7 +112,7 @@ map = L.map('map', {
   fadeAnimation: false,
   zoomAnimation: false,
   markerZoomAnimation: false,
-  minZoom: 16,  // ← ajoute cette ligne
+  minZoom: 5,  // ← ajoute cette ligne
   maxZoom: 19
 }).setView([47.2184, -1.5536], 13.5);
 
@@ -468,6 +468,25 @@ function resetFilters() {
   updatePriceDisplay();
   document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
   filterMarkers();
+}
+function geolocateInit() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude, longitude } = pos.coords;
+      if (geoMarker) map.removeLayer(geoMarker);
+      const blueIcon = L.divIcon({
+        className: '',
+        html: `<div style="width:16px;height:16px;background:#2563eb;border:3px solid white;border-radius:50%;box-shadow:0 0 0 4px rgba(37,99,235,0.25)"></div>`,
+        iconSize: [16, 16], iconAnchor: [8, 8]
+      });
+      geoMarker = L.marker([latitude, longitude], { icon: blueIcon, zIndexOffset: 2000 });
+      geoMarker.addTo(map);
+      // Pas de flyTo ici — juste le point
+    },
+    () => {}, // silencieux si refus
+    { enableHighAccuracy: true, timeout: 8000 }
+  );
 }
 let geoMarker = null;
 function geolocate(showAlert = true) {
