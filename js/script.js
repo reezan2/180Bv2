@@ -500,7 +500,14 @@ const noteOk = isPMU || filterState.notes.includes(bar.isPépite ? 'Pépite' : b
       if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
       else { if (map.hasLayer(marker)) map.removeLayer(marker); }
     });
+    // Indicateur visuel si des filtres sont actifs
+const isActive = filterState.types.length > 0 || filterState.happyHour ||
+  filterState.fermeApres2h || filterState.priceMin > priceRange.min ||
+  filterState.priceMax < priceRange.max || filterState.notes.length < 5;
+const filterBtns = document.querySelectorAll('.leaflet-filter-btn');
+if (filterBtns[0]) filterBtns[0].style.color = isActive ? '#059669' : '#374151';
   }, 80);
+  
 }
 
 function onFilterChange() {
