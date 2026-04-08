@@ -304,13 +304,23 @@
 
 </div>
   <!-- MODAL DONATION -->
-  <div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
-<div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl flex flex-col mx-4">
-  <div class="p-5 overflow-y-auto flex-1">
-        <div class="flex justify-between items-center mb-6">
-          <h3 class="text-2xl font-bold text-zinc-900">Nous offrir une conso 🍺</h3>
-          <button onclick="closeDonationModal()" class="text-4xl leading-none text-zinc-400 hover:text-zinc-600">×</button>
-        </div>
+<div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
+  <div class="bg-white rounded-3xl w-full overflow-hidden shadow-2xl mx-4" style="max-width:420px;max-height:90vh">
+    <div class="flex justify-between items-center p-5 border-b border-zinc-100">
+      <h3 class="text-xl font-bold text-zinc-900">Nous payer une conso 🍺</h3>
+      <button onclick="closeDonationModal()" class="text-3xl leading-none text-zinc-400 hover:text-zinc-600">×</button>
+    </div>
+    <iframe id="kofi-iframe"
+      src="https://ko-fi.com/tonpseudo/?hidefeed=true&widget=true&embed=true&preview=true"
+      style="width:100%;height:500px;border:none;display:block"
+      title="Ko-fi donation">
+    </iframe>
+    <p class="text-center text-xs text-zinc-400 py-3">
+  Problème d'affichage ? 
+  <a href="https://ko-fi.com/tonpseudo" target="_blank" class="text-emerald-600 underline">Ouvrir Ko-fi</a>
+</p>
+  </div>
+</div>
 
         <p class="text-zinc-600 mb-8 text-[15px]">Merci de soutenir l’équipe qui teste tous les bars de Nantes !</p>
 
