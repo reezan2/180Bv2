@@ -192,24 +192,24 @@
 
     <!-- Colonne gauche : NOTE + PDLMC + HAPPY HOURS -->
     <div class="flex flex-col gap-3" style="width:50%">
-      <div class="flex items-start gap-4">
-        <div id="block-rating">
-          <span class="text-xs tracking-widest text-zinc-500 block mb-1">NOTE</span>
-          <div id="modal-rating" class="text-5xl font-black leading-none"></div>
+<div class="flex items-start" style="gap:0">
+  <div id="block-rating" style="width:50%">
+    <span class="text-xs tracking-widest text-zinc-500 block mb-1">NOTE</span>
+    <div id="modal-rating" class="text-5xl font-black leading-none"></div>
+  </div>
+  <div id="block-price" style="width:50%">
+    <div class="flex items-center gap-1 mb-1">
+      <span class="text-xs tracking-widest text-zinc-500">PDLMC</span>
+      <div class="relative group">
+        <span class="text-xs text-zinc-400 cursor-pointer select-none" tabindex="0" style="font-style:italic;font-weight:700">i</span>
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 bg-zinc-800 text-white text-xs rounded-lg px-2 py-1 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+          Pinte de la moins chère
         </div>
-<div id="block-price">
-  <div class="flex items-center gap-1 mb-1">
-    <span class="text-xs tracking-widest text-zinc-500">PDLMC</span>
-    <div class="relative group">
-      <span class="text-xs text-zinc-400 cursor-pointer select-none" tabindex="0" style="font-style:italic;font-weight:700">i</span>
-      <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 bg-zinc-800 text-white text-xs rounded-lg px-2 py-1 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
-        Pinte de la moins chère
       </div>
     </div>
+    <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
   </div>
-  <div id="modal-price" class="text-4xl font-semibold text-emerald-600"></div>
 </div>
-      </div>
       <div id="modal-extra-info" class="text-zinc-600 text-[15.5px] space-y-2"></div>
     </div>
 
