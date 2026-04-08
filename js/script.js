@@ -526,6 +526,10 @@ const isActive = filterState.types.length > 0 || filterState.happyHour ||
   filterState.priceMax < priceRange.max || filterState.notes.length < 5;
 const filterBtns = document.querySelectorAll('.leaflet-filter-btn');
 if (filterBtns[0]) filterBtns[0].style.color = isActive ? '#059669' : '#374151';
+    // Compteur de résultats
+const count = markers.filter(({ marker }) => map.hasLayer(marker)).length;
+const countEl = document.getElementById('filter-count');
+if (countEl) countEl.textContent = `${count} bar${count > 1 ? 's' : ''}`;
   }, 80);
   
 }
