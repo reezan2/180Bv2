@@ -129,11 +129,8 @@
 </head>
 <body class="bg-zinc-50">
 
-<!-- HEADER RESPONSIVE -->
 <header class="fixed top-0 left-0 right-0 bg-emerald-700 text-white shadow-md z-50">
   <div class="max-w-7xl mx-auto px-4 py-3">
-
-    <!-- Version mobile + desktop -->
     <div class="flex items-center justify-between gap-3">
 
       <!-- Logo + Titre -->
@@ -145,35 +142,28 @@
         </div>
       </div>
 
-<!-- ✅ REMPLACE le bloc recherche -->
-<div class="flex-1 max-w-md mx-2 relative">
-  <input
-    id="search-bar"
-    type="text"
-    placeholder="Rechercher un bar..."
-    onfocus="showSuggestions('')"
-    class="w-full h-10 bg-white rounded-full px-5 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm"
-  >
-  <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden z-50"></div>
-</div>
+      <!-- Recherche -->
+      <div class="flex-1 max-w-md mx-2 relative">
+        <input id="search-bar" type="text" placeholder="Rechercher un bar..."
+          onfocus="showSuggestions('')"
+          class="w-full h-10 bg-white rounded-full px-5 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
+        <div id="search-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-2xl shadow-lg max-h-60 overflow-y-auto hidden z-50"></div>
+      </div>
 
-<div class="flex items-center gap-3 shrink-0">
+      <!-- Boutons droite -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="https://www.instagram.com/nantes_en_180_bars" target="_blank"
+           style="display:flex;align-items:center;opacity:1;transition:opacity 0.2s"
+           onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
+          <img src="assets/LogoInstagram.png" style="width:32px;height:32px;object-fit:contain;display:block">
+        </a>
+        <button onclick="openDonationModal()"
+                style="background:none;border:none;padding:0;cursor:pointer;display:flex;opacity:1;transition:opacity 0.2s"
+                onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
+          <img src="assets/Donation.png" style="width:32px;height:32px;object-fit:contain;display:block">
+        </button>
+      </div>
 
-  <a href="https://www.instagram.com/nantes_en_180_bars" target="_blank"
-     style="display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.2s"
-     onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-    <img src="assets/LogoInstagram.png" alt="Instagram"
-         style="width:32px;height:32px;object-fit:contain;display:block">
-  </a>
-
-  <button onclick="openDonationModal()"
-          style="background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.2s"
-          onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-    <img src="assets/Donation.png"
-         style="width:32px;height:32px;object-fit:contain;display:block">
-  </button>
-
-</div>
     </div>
   </div>
 </header>
