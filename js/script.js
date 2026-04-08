@@ -4,8 +4,8 @@ let markers = [];
 let filterState = {
   types: [],
   happyHour: false,
-  priceMin: 0,
-  priceMax: 10,
+priceMin: null,
+priceMax: null,
   fermeApres2h: false,
   notes: ['Pépite', 'A', 'B', 'C', 'D']
 };
@@ -36,8 +36,8 @@ async function initApp() {
     if (prices.length) {
       priceRange.min = Math.floor(Math.min(...prices) * 2) / 2;
       priceRange.max = Math.ceil(Math.max(...prices) * 2) / 2;
-      filterState.priceMin = priceRange.min;
-      filterState.priceMax = priceRange.max;
+filterState.priceMin = filterState.priceMin ?? priceRange.min;
+filterState.priceMax = filterState.priceMax ?? priceRange.max;
     }
 
     // Initialize in correct order
