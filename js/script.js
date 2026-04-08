@@ -437,11 +437,11 @@ function openDonationModal() {
 function closeDonationModal() {
   document.getElementById('donation-modal').classList.add('hidden');
 }
-
 function donate(amount) {
   closeDonationModal();
   window.open(`https://ko-fi.com/nantesen180bars`, '_blank');
 }
+
 function donateCustom() {
   closeDonationModal();
   window.open('https://ko-fi.com/nantesen180bars', '_blank');
