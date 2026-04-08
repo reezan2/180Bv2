@@ -295,7 +295,7 @@ if (bar.types && bar.types.includes('pmu')) {
   img.onerror = () => { wrapper.style.display = 'none'; };
 
   const tooltip = document.createElement('div');
-  tooltip.textContent = 'PMU';
+tooltip.textContent = 'Tickets à gratter';
   tooltip.style.cssText = `
     position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
     background:#1f2937;color:white;font-size:11px;padding:3px 8px;border-radius:8px;
