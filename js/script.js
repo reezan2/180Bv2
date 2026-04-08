@@ -285,7 +285,7 @@ if (bar.types && bar.types.includes('pmu')) {
   wrapper.style.cssText = 'position:relative;display:inline-block';
 
   const img = document.createElement('img');
-  img.src = './assets/PMU2.png';
+  img.src = './assets/ticketagratter.png';
   img.alt = 'PMU';
   img.className = 'w-10 h-10';
   img.onerror = () => { wrapper.style.display = 'none'; };
