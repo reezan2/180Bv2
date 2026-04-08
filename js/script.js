@@ -11,6 +11,7 @@ priceMax: null,
 };
 let priceRange = { min: 0, max: 20 };
 let recentSearches = [];
+let fuse = null;
 
 const BAR_TYPES = ['Tous', 'Bar à fléchette', 'Bar dansant', 'Bar à cocktail', 'Guinguette', 'Pub', 'Bar à jeux', 'Terrasse au soleil', 'PMU'];
 const TYPE_MAP = {
@@ -29,6 +30,11 @@ async function initApp() {
     const res = await fetch('data/bars.json');
     const data = await res.json();
     bars = data.bars || [];
+    fuse = new Fuse(bars, {
+  keys: ['name'],
+  threshold: 0.4, // 0 = exact, 1 = tout accepter — 0.4 est un bon équilibre
+  minMatchCharLength: 2
+});
     console.log(`✅ ${bars.length} bars chargés`);
 
     // Calculate price range from actual data
@@ -446,7 +452,7 @@ function showSuggestions(input) {
     if (recentSearches.length === 0) return;
     results = recentSearches.slice().reverse();
   } else if (input.length >= 2) {
-    results = bars.filter(bar => bar.name.toLowerCase().includes(input.toLowerCase()));
+results = fuse ? fuse.search(input).map(r => r.item) : bars.filter(b => b.name.toLowerCase().includes(input.toLowerCase()));
   } else {
     return;
   }
