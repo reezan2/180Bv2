@@ -225,7 +225,7 @@ const isPMU = bar.types && bar.types.includes('pmu');
 if (bar.isPépite) {
   ratingEl.innerHTML = `<img src="./assets/Pepite.png" class="w-16 h-16" alt="Pépite">`;
 } else if (isPMU) {
-  ratingEl.innerHTML = `<img src="./assets/PMU.png" class="w-16 h-16" alt="PMU">`;
+ratingEl.innerHTML = `<img src="./assets/PMU.png" style="width:48px;height:48px;object-fit:contain" alt="PMU">`;
 } else {
   ratingEl.textContent = bar.rating;
   ratingEl.style.color = bar.color || '#000';
