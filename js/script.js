@@ -243,14 +243,72 @@ if (bar.types && bar.types.length > 0) {
   blockTypes.classList.add('hidden');
 }
   if (bar.types && bar.types.length > 0) {
-    bar.types.forEach(type => {
-      const img = document.createElement('img');
-      img.src = `./assets/${type}.png`;
-      img.alt = type;
-      img.className = "w-10 h-10 hover:scale-110 transition-transform";
-      img.title = type.replace(/-/g, ' ');
-      typesContainer.appendChild(img);
-    });
+bar.types.forEach(type => {
+  if (type === 'pmu') return; // PMU affiché séparément via PMU2.png
+
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = 'position:relative;display:inline-block';
+
+  const img = document.createElement('img');
+  img.src = `./assets/${type}.png`;
+  img.alt = type;
+  img.className = "w-10 h-10 transition-transform";
+  img.onerror = () => { wrapper.style.display = 'none'; };
+
+  const tooltip = document.createElement('div');
+  const label = type.replace(/-/g, ' ');
+  tooltip.textContent = label;
+  tooltip.style.cssText = `
+    position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    background:#1f2937;color:white;font-size:11px;padding:3px 8px;border-radius:8px;
+    white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:100;
+  `;
+
+  img.addEventListener('mouseenter', () => tooltip.style.opacity = '1');
+  img.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
+  img.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    tooltip.style.opacity = '1';
+    setTimeout(() => tooltip.style.opacity = '0', 1500);
+  }, { passive: false });
+
+  wrapper.appendChild(tooltip);
+  wrapper.appendChild(img);
+  typesContainer.appendChild(wrapper);
+});
+    // Ajoute PMU2 dans Les + si le bar est un PMU
+if (bar.types && bar.types.includes('pmu')) {
+  const blockTypes = document.getElementById('block-types');
+  blockTypes.classList.remove('hidden');
+
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = 'position:relative;display:inline-block';
+
+  const img = document.createElement('img');
+  img.src = './assets/PMU2.png';
+  img.alt = 'PMU';
+  img.className = 'w-10 h-10';
+  img.onerror = () => { wrapper.style.display = 'none'; };
+
+  const tooltip = document.createElement('div');
+  tooltip.textContent = 'PMU';
+  tooltip.style.cssText = `
+    position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    background:#1f2937;color:white;font-size:11px;padding:3px 8px;border-radius:8px;
+    white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:100;
+  `;
+  img.addEventListener('mouseenter', () => tooltip.style.opacity = '1');
+  img.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
+  img.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    tooltip.style.opacity = '1';
+    setTimeout(() => tooltip.style.opacity = '0', 1500);
+  }, { passive: false });
+
+  wrapper.appendChild(tooltip);
+  wrapper.appendChild(img);
+  typesContainer.appendChild(wrapper);
+}
   }
 
 // ✅ APRÈS — tout dans la fonction, un seul } de fermeture
