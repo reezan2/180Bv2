@@ -11,6 +11,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
+    :root { --header-h: 64px; }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
     html, body {
@@ -22,10 +23,10 @@
 
     #map {
       position: absolute;
-      top: 64px;
+      top: var(--header-h);
       left: 0;
       width: 100%;
-      height: calc(100vh - 64px);
+      height: calc(100vh - var(--header-h));
       z-index: 0;
     }
 
@@ -47,7 +48,7 @@
       text-decoration: underline;
     }
 
-    .leaflet-top { top: 64px !important; }
+    .leaflet-top { top: var(--header-h) !important; }
 .modal-scroll { overflow-y: scroll; }
 .modal-scroll::-webkit-scrollbar { width: 4px; }
 .modal-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -55,8 +56,8 @@
 .modal-scroll { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
     /* FILTER PANEL */
 #filter-panel {
-  position: fixed; top: 64px; left: -310px;
-  width: 290px; height: calc(100vh - 64px);
+  position: fixed; top: var(--header-h); left: -310px;
+  width: 290px; height: calc(100vh - var(--header-h));
   background: #fef8f5; z-index: 3000;
   transition: left 0.3s ease;
   overflow-y: scroll;
