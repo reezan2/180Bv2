@@ -232,6 +232,7 @@ photoEl.loading = 'lazy';
 photoEl.src = bar.photos && bar.photos[0]
   ? bar.photos[0]
   : 'https://placehold.co/800x600/cccccc/333333?text=Photo+non+disponible';
+  photoEl.onerror = () => { photoEl.src = 'https://placehold.co/800x600/e5e7eb/9ca3af?text=Photo+non+disponible'; };
   renderModalInfo(bar);
   document.getElementById('bar-modal').classList.remove('hidden');
 }
