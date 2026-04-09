@@ -299,7 +299,7 @@
 
 </div>
   <!-- MODAL DONATION -->
-<div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]">
+<div id="donation-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[9999]" style="display:none">
   <div class="bg-white rounded-3xl w-full overflow-hidden shadow-2xl mx-4" style="max-width:420px">
     <div class="p-5">
       <div class="flex justify-between items-center mb-6">
@@ -323,27 +323,6 @@
     </div>
   </div>
 </div>
-
-        <p class="text-zinc-600 mb-8 text-[15px]">Merci de soutenir l’équipe qui teste tous les bars de Nantes !</p>
-
-        <div class="grid grid-cols-3 gap-3 mb-8">
-          <button onclick="donate(5)" class="bg-emerald-100 hover:bg-emerald-200 active:bg-emerald-300 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">5 €</button>
-          <button onclick="donate(10)" class="bg-emerald-100 hover:bg-emerald-200 active:bg-emerald-300 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">10 €</button>
-          <button onclick="donate(20)" class="bg-emerald-100 hover:bg-emerald-200 active:bg-emerald-300 transition py-3.5 rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">20 €</button>
-        </div>
-
-<div class="flex flex-col gap-3">
-  <input id="custom-amount" type="number" placeholder="Autre montant" 
-         class="w-full border border-zinc-300 rounded-3xl px-5 py-3.5 text-center text-lg focus:outline-none focus:border-emerald-500 h-12">
-  <button onclick="donateCustom()" 
-          class="w-full bg-emerald-700 hover:bg-emerald-800 text-white rounded-3xl font-semibold text-lg h-12 flex items-center justify-center">
-    Donner
-  </button>
-</div>
-      </div>
-    </div>
-  </div>
-
   <script src="js/script.js" defer></script>
   <script>
   if ('serviceWorker' in navigator) {
