@@ -29,7 +29,8 @@
       height: calc(100vh - var(--header-h));
       z-index: 0;
     }
-
+    #donation-modal { display: none !important; }
+#donation-modal:not(.hidden) { display: flex !important; }
     header { z-index: 2000; }
     #bar-modal, #donation-modal { z-index: 9999; }
     .leaflet-top, .leaflet-bottom, .leaflet-control-container { z-index: 1000 !important; }
@@ -121,8 +122,7 @@
 #filter-overlay { z-index: 4999 !important; }
     .group:focus-within .group-hover\:opacity-100,
 .group:active .group-hover\:opacity-100 { opacity: 1; }
-    #donation-modal { display: none !important; }
-#donation-modal:not(.hidden) { display: flex !important; }
+
   </style>
   <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#065f46">
