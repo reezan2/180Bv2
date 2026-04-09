@@ -2147,6 +2147,99 @@
          ],
          "isPépite":false,
          "types": ["pmu"]
+      },
+            {
+         "id":148,
+         "name":"Le Bistrô Nouveau",
+         "lat":47.21605308789299, 
+         "lng":-1.5527235836387905,
+         "rating":"B",
+         "color":"#b5dabe",
+         "pdlmc_price":"5€",
+         "description":"Le Bistrô Nouveau se situe en plein milieu de la Place du Pilori ! Lieu de passage, tu es surement déjà passé devant ce bar qui a changé de propriétaire récemment. Le bistro est ouvert toute la journée",
+         "ig_link":"https://www.instagram.com/p/DVbpQb1DSUC/?img_index=1",
+         "photos":[
+            "photos/Bistronouveau.jpg"
+         ],
+         "isPépite":false,
+         "types": ["flechettes"]               
+      },    
+      {
+         "id":149,
+         "name":"Little William",
+         "lat":47.23093145236312,
+         "lng":-1.5560871322255017,
+         "rating":"A",
+         "color":"#306629",
+         "pdlmc_price":"5,5€",
+         "description":"Première fois qu’on se retrouve quartier Saint Félix pour vous présenter l’iconique @littlewilliamnantes ! Ce bar est un classique du quartier situé sur la place Saint Félix face à l’église.",
+         "ig_link":"https://www.instagram.com/p/DVwNNABDUr5/?img_index=1",
+         "photos":[
+            "photos/Littlewilliam.jpg"
+         ],
+         "isPépite":false
+      },      
+      {
+         "id":150,
+         "name":"La Routine",
+         "lat":47.21076721036804,
+         "lng":-1.5491069747489368,
+         "rating":"B",
+         "color":"#b5dabe",
+         "pdlmc_price":"6€",
+         "description":"la Routine est un nouveau bar qui a ouvert en août 2025 juste à côté de la Place du Pilori ! Un super bar de copains que l’on te présente aujourd’hui. Anciennement le Briord, la Routine se centre ",
+         "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DK7N1gTsJ9Y/",
+         "photos":[
+            "photos/Routine.jpg"
+         ],
+         "isPépite":false,
+         "types": ["flechettes"] 
+      },      
+      {
+         "id":151,
+         "name":"Le Balkabar",
+         "lat":47.20899232673447,
+         "lng":-1.5684856281159427,
+         "rating":"A",
+         "color":"#306629",
+         "pdlmc_price":"5,3€",
+         "description":"On s’attaque à une référence à Nantes mais il y a des chances que tu ne le connaisse pas : Le Balkabar ! Situé en face du pont Anne de Bretagne, le bar ne paye pas forcément de mine vu de loin mais ça",
+         "ig_link":"https://www.instagram.com/p/DWMCobGDbGl/?img_index=1",
+         "photos":[
+            "photos/Balkabar.jpg"
+         ],
+         "isPépite":false
+      },      
+      {
+         "id":152,
+         "name":"La Taverne des Aventuriers",
+         "lat":47.21278119130095,
+         "lng":-1.5555994757176985,
+         "rating":"A",
+         "color":"#306629",
+         "pdlmc_price":"6€",
+         "description":"Il y 8 mois, la rue Kervégan connaissait un changement de bar. Adieu les cocktails du Bottleger et bonjour à un nouveau bar à jeu (ou même un bar d’aventure) : @latavernedesaventuriers44 ! ⚔️",
+         "ig_link":"https://www.instagram.com/p/DWypVn0jW4F/?img_index=1",
+         "photos":[
+            "photos/Tavernedesaventuriers.jpg"
+         ],
+         "isPépite":false
+      },
+            {
+         "id":153,
+         "name":"Shake Point",
+         "lat":47.213805281921026,
+         "lng":-1.5542630591052549,
+         "rating":"B",
+         "color":"#b5dabe",
+         "pdlmc_price":"4€",
+         "description":"Le @shakepointnantes a remplacé le Jungle début 2025 ! Cela va bientôt faire un an que ce bar a changé et on te le présente aujourd’hui ! Il est situé en plein centre de Nantes (difficile de faire plus) à la croisée des trams ! 🚋",
+         "ig_link":"https://www.instagram.com/p/DU_UqQmDazx/?img_index=1",
+         "photos":[
+            "photos/Shakepoint.jpg"
+         ],
+         "isPépite":false,
+         "types": ["flechettes"] 
       }
    ]
 }
