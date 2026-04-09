@@ -439,9 +439,8 @@ function closeDonationModal() {
 }
 function donate(amount) {
   closeDonationModal();
-  window.open(`https://ko-fi.com/nantesen180bars`, '_blank');
+  window.open(`https://paypal.me/Nantesen180Bars/${amount}EUR`, '_blank');
 }
-
 function donateCustom() {
   closeDonationModal();
   window.open('https://ko-fi.com/nantesen180bars', '_blank');
