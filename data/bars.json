@@ -683,8 +683,7 @@
             "photos/Casa.jpg"
          ],
          "isPépite":false,
-         "types": ["terrasse-au-soleil", "bar-a-cocktail"],
-
+         "types": ["terrasse-au-soleil", "bar-a-cocktail"]
       },
       {
          "id":46,
