@@ -7,7 +7,7 @@
          "lng":-1.5595828827243843,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"7,1€",
+         "pdlmc_price":"6€",
          "description":"C’est un bar à bières situé à deux pas de la Tour de Bretagne. 🍺 Le bar est très sympa avec une jolie terrasse et un intérieur très chaleureux avec une borne de fléchettes ! 🎯",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DG583PDsSul/",
          "photos":[
@@ -92,7 +92,8 @@
          "photos":[
             "photos/Bateau lavoir.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "guinguette"]
       },
       {
          "id":7,
@@ -152,7 +153,8 @@
          "photos":[
             "photos/Bubba gum.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-cocktail", "flechettes"]
       },
       {
          "id":11,
@@ -281,7 +283,7 @@
          "lng":-1.5643786459130802,
          "rating":"Pépite",
          "color":"#193f21",
-         "pdlmc_price":"6,5€",
+         "pdlmc_price":"7,5€",
          "description":"Le Cheese and Friends est un bar qui a ouvert il y a un peu plus d'un an rue racine, en haut de la place Graslin. Comme son nom l'indique c'est un bar à fromages. 🧀 Tu y trouveras plusieurs",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CxfYCBfIdbP/",
          "photos":[
@@ -401,7 +403,7 @@
          "lng":-1.5503937061363338,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"6€",
+         "pdlmc_price":"5€",
          "description":"Le Délirium Café est un bar à bières plutôt convivial situé proche du tunnel Feydeau/Olivettes ! 🍻 L'intérieur est très spacieux, tu y trouveras de grandes tables, parfait pour les groupes ! 👌",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Co2m5-woEEW/",
          "photos":[
@@ -437,7 +439,8 @@
          "photos":[
             "photos/Drole de barge.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "guinguette"]
       },
       {
          "id":30,
@@ -446,7 +449,7 @@
          "lng":-1.5611173612553277,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"7€",
+         "pdlmc_price":"5€",
          "description":"Le DROP, c’est un bar qui n’a pas encore un an situé entre Bretagne et la place Viarme. Il y fait bon vivre à l’intérieur avec une décoration chaleureuse et un service très cool ! 🤗 L’extérieur est",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DJzVwSEsPQN/",
          "photos":[
@@ -461,7 +464,7 @@
          "lng":-1.5541570747486486,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"5€",
+         "pdlmc_price":"5,5€",
          "description":"Tu l'as compris, le concept du bar, c'est les shooters ! Plus de 600 à la cartes, des enflammés, pimentés, avec des bonbons, des fruits, des jeux, des plus funs, bref il y en a",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C5EZxn7MDs5/",
          "photos":[
@@ -506,7 +509,7 @@
          "lng":-1.5517527910856643,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"4,9€",
+         "pdlmc_price":"5,5€",
          "description":"Le Giggs Cathédrale est un des pubs irlandais les plus connus de Nantes et aussi un de ceux qui a le plus de succès ! Situé place St Pierre, en face la cathédrale, le pub possède une assez",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C_0ug_npuuH/",
          "photos":[
@@ -536,7 +539,7 @@
          "lng":-1.5470533631052266,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"5€",
          "description":"La Guindaille est un \"bar à manger\" ouvert assez récemment (fin 2022) dans la jolie rue Fouré ! 🤩 Le bar se distingue grâce à son offre et sa carte de plats assez complète le midi et le soir !",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C6UBEo9sruW/",
          "photos":[
@@ -551,13 +554,14 @@
          "lng":-1.546800141310856,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"6€",
+         "pdlmc_price":"5,8€",
          "description":"La guinguette du Belvédère c'est peut-être LE bar où aller quand il fait beau. 😎 Entièrement ouvert avec un toit terrasse, c'est un super endroit pour aller prendre un verre au soleil ☀️",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CsJBvUKokyY/",
          "photos":[
             "photos/Guinguette bel.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "guinguette"]
       },
       {
          "id":38,
@@ -662,7 +666,8 @@
          "photos":[
             "photos/Cantine.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "guinguette", "flechettes"]
       },
       {
          "id":45,
@@ -677,7 +682,9 @@
          "photos":[
             "photos/Casa.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "bar-a-cocktail"],
+
       },
       {
          "id":46,
@@ -686,7 +693,7 @@
          "lng":-1.5592432459129868,
          "rating":"C",
          "color":"#f4c280",
-         "pdlmc_price":"4€",
+         "pdlmc_price":"4,5€",
          "description":"Bienvenue dans un super bar de quartier qui porte le nom de sa rue : La Contrescarpe ! 😎 À deux pas de la place Royale, ce bar est ouvert toute la journée (8h-21h) et propose le déjeuner le midi. 🍽",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DJj6WpqMKko/",
          "photos":[
@@ -731,7 +738,7 @@
          "lng":-1.545551194072955,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"6,5€",
          "description":"Pour bien commencer cette rentrée, on vous fait découvrir un nouveau bar (ouvert début 2025) pas loin de la Cité des Congrès. Bienvenue à La Licorne Noire ! 🦄",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DOOd7-5jWES/",
          "photos":[
@@ -806,7 +813,7 @@
          "lng":-1.5525417035842215,
          "rating":"Pépite",
          "color":"#193f21",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"4€",
          "description":"La Ribouldingue est un bar situé rue de Verdun, entre la rue de Strasbourg et la place du Pilori. 📍 C'est le seul bar de la rue, l'emplacement est idéal dans le centre-ville, mais pas  ",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CzrTy8Uomi1/",
          "photos":[
@@ -866,7 +873,7 @@
          "lng":-1.5572328459134712,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"5,9€",
          "description":"Tu t'es peut-être déjà demandé ce qu'était ce bloc bleu qui ressemble à une dent ou un glaçon (ça dépend des gens) ? Eh bien, c'est un bar : l’Absence et c'est clairement un de nos bars",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DAMATtMojy2/",
          "photos":[
@@ -881,7 +888,7 @@
          "lng":-1.5659989882415333,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"5,9€",
          "description":"L'Aléa est un bar encore assez jeune situé entre la place Viarme et le boulevard Guist’hau. C’est un vrai petit bar de quartier, chaleureux comme on aime ! 🥰 La terrasse du bar est très sym",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DHjJKpBsT2q/",
          "photos":[
@@ -956,7 +963,7 @@
          "lng":-1.5572479693148888,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"6€",
          "description":"Le Bras de Fer est pour nous un des classiques du quartier République sur l'Ile de Nantes ! 😍 On adore son l'intérieur du bar, on s'y sens toujours très bien avec le petit étage, les canapés et",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Czd1OfpIGUx/",
          "photos":[
@@ -1046,13 +1053,14 @@
          "lng":-1.5535578875131983,
          "rating":"C",
          "color":"#f4c280",
-         "pdlmc_price":"3,5€",
+         "pdlmc_price":"3,9€",
          "description":"Le Cap's est situé à un croisement du quartier Feydeau. Entouré de bars et de restaurants, c'est un endroit idéal si tu veux trouver une ambiance festive sur la terrasse ! 🥳 À la carte ? cocktails",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CkiIwuuMGwk/",
          "photos":[
             "photos/Caps.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":73,
@@ -1082,7 +1090,8 @@
          "photos":[
             "photos/Corneille.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-cocktail"]
       },
       {
          "id":75,
@@ -1106,7 +1115,7 @@
          "lng":-1.5495876324200915,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"5,8€",
          "description":"Le Coup du Lapin est un bar très chaleureux situé dans le quartier Madeleine. On s'y sent vite très bien et on y a passé un très bon moment ! 🤩 On sent également que c'est un bar avec une clientèle",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C4vyDk7hy2X/",
          "photos":[
@@ -1121,7 +1130,7 @@
          "lng":-1.5610071477622474,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"4,9€",
+         "pdlmc_price":"6,5€",
          "description":"Le Croque Bedaine est un bar à bières et croques situé pas loin de la Tour de Bretagne. 🏢 À l'intérieur, service à table et ambiance très chaleureuse, on s'y sent bien ! 🤗 À la carte, un joli",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Cm9shotoQRA/",
          "photos":[
@@ -1136,7 +1145,7 @@
          "lng":-1.5737405664465345,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"6,5€",
          "description":"Le Ferrailleur est un bar mais aussi une salle de concerts rock, metal, pop, rap + after électro avec des dj sets jusqu'à 4h le tout sur le quai des Antilles 🕺",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C1C1fw8quIo/",
          "photos":[
@@ -1181,7 +1190,7 @@
          "lng":-1.5631588035844193,
          "rating":"C",
          "color":"#f4c280",
-         "pdlmc_price":"7€",
+         "pdlmc_price":"5€",
          "description":"Le Graslin de folie se situe à 10 mètres de la place de la place Graslin (logique) au tout début de la rue Racine. Emplacement idéal pour un verre en terrasse dans ce beau quartier nantais avec vue",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Cu2WuG5IsXm/",
          "photos":[
@@ -1226,13 +1235,14 @@
          "lng":-1.5550652941357128,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"6€",
+         "pdlmc_price":"5€",
          "description":"Le LABO est sûrement un des bars de Nantes avec le plus de choix de rhums et cocktails différents ! La carte des rhums est immense mais on y trouve aussi un petit choix de bières et de vins.",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Cw29DYbu36g/",
          "photos":[
             "photos/Labo.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-cocktail"]
       },
       {
          "id":85,
@@ -1292,7 +1302,8 @@
          "photos":[
             "photos/Maestro.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-cocktail"]
       },
       {
          "id":89,
@@ -1307,7 +1318,8 @@
          "photos":[
             "photos/Medusa.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-cocktail"]
       },
       {
          "id":90,
@@ -1397,7 +1409,8 @@
          "photos":[
             "photos/Petit baigneur.jpg"
          ],
-         "isPépite":true
+         "isPépite":true,
+         "types": ["terrasse-au-soleil", "guinguette"]
       },
       {
          "id":96,
@@ -1586,7 +1599,7 @@
          "lng":-1.554442513053728,
          "rating":"C",
          "color":"#f4c280",
-         "pdlmc_price":"6,1€",
+         "pdlmc_price":"5€",
          "description":"Les Berthom, c'est un bar à bière présent dans de nombreuses grandes villes en France ! 🍺 À Nantes, le Berthom se situe en plein Commerce, le bar est très grand à l'intérieur, l'espace parfait pour",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C4Yo1_esA4X/",
          "photos":[
@@ -1691,7 +1704,7 @@
          "lng":-1.561943303584435,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"6€",
          "description":"L'Indécis est un bar à jeux situé juste au-dessus de Médiathèque, pas loin du cours Cambronne. La terrasse du bar est assez petite, mais permet d'y poser quelques tables. Pour autant, ce n'est pas ",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DEsZUHFuGya/",
          "photos":[
@@ -1721,7 +1734,7 @@
          "lng":-1.5505371778767283,
          "rating":"Pépite",
          "color":"Pepite.png",
-         "pdlmc_price":"5,3€",
+         "pdlmc_price":"5,4€",
          "description":"Le Live Bar se trouve en face du château des ducs de Bretagne 🏰 Une super situation, une belle terrasse ombragée au calme et un intérieur plus intimiste et chaleureux avec une petite scène ! 🎤",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CjqSDizo_Hm/",
          "photos":[
@@ -1736,13 +1749,14 @@
          "lng":-1.5552187025335396,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"4,5€",
+         "pdlmc_price":"3,9€",
          "description":" Bar bien connu de l'île Nantes à deux pas du CHU et du centre ville 🏨 Un choix de bières (4,5euros la moins chère) et une carte de cocktails assez large et à prix abordables 💶",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CkOYopjoWA1/",
          "photos":[
             "photos/Louis blanc.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":120,
@@ -1781,7 +1795,7 @@
          "lng":-1.5495575531459127,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"5€",
+         "pdlmc_price":"5,5€",
          "description":"La maison café propose un concept assez unique à Nantes. En effet, le bar est une maison ! 🏠 Tu peux donc boire ta bière les pieds dans la baignoire, siroter ton cocktail dans la cuisine ou ",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CrwCkSLOAmf/",
          "photos":[
@@ -1997,7 +2011,8 @@
          "photos":[
             "photos/Santeuil cafe.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-cocktail"]
       },
       {
          "id":137,
@@ -2021,7 +2036,7 @@
          "lng":-1.5567994846754067,
          "rating":"Pépite",
          "color":"#193f21",
-         "pdlmc_price":"3,7€",
+         "pdlmc_price":"3,9€",
          "description":"Une nouvelle pépite pour notre 50ème post, c'est le Tabarnak ! Située sur une petite place cachée derrière la basilique St Nicolas, on adore le cadre et la situation de la terrasse. Il y a beaucoup",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CuhkIpbJMc5/",
          "photos":[
@@ -2051,7 +2066,7 @@
          "lng":-1.553675503584384,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"4€",
+         "pdlmc_price":"4,5€",
          "description":"Le Green Sheep se situe en plein centre de l'île Feydeau, ambiance animée à l'extérieur assurée avec une belle terrasse ! 🥳 À l'intérieur, on est sur une ambiance pub irlandais assez classique !",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/CpNHJNooDHg/",
          "photos":[
@@ -2081,7 +2096,7 @@
          "lng":-1.5554462262213555,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"7€",
+         "pdlmc_price":"5,5€",
          "description":"On découvre aujourd'hui un bar encore tout jeune qui a ouvert en juin 2024 : @bar.voyagevoyage ! Situé au nord du quartier Bouffay, c'est un resto/bar ouvert du mardi au samedi ! 🤗",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DD96BBeIaV4/",
          "photos":[
