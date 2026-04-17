@@ -255,6 +255,7 @@ if (bar.types && bar.types.length > 0) {
   if (bar.types && bar.types.length > 0) {
 bar.types.forEach(type => {
   if (type === 'pmu') return; // PMU affiché séparément via PMU2.png
+if (type === 'guinguette') return;
 
   const wrapper = document.createElement('div');
   wrapper.style.cssText = 'position:relative;display:inline-block';
@@ -397,19 +398,34 @@ if (note === 'Pépite') {
 }
 
       btn.dataset.note = note;
-      btn.onclick = () => {
-        const idx = filterState.notes.indexOf(note);
-        if (idx > -1) {
-          if (filterState.notes.length > 1) {
-            filterState.notes.splice(idx, 1);
-            btn.classList.add('inactive');
-          }
-        } else {
-          filterState.notes.push(note);
-          btn.classList.remove('inactive');
-        }
-        filterMarkers();
-      };
+// ✅ APRÈS
+btn.onclick = () => {
+  const allNotes = ['Pépite', 'A', 'B', 'C', 'D'];
+  const allSelected = filterState.notes.length === allNotes.length;
+
+  if (allSelected) {
+    // Toutes sélectionnées → isoler uniquement celle-ci
+    filterState.notes = [note];
+    document.querySelectorAll('.note-btn').forEach(b => b.classList.add('inactive'));
+    btn.classList.remove('inactive');
+  } else {
+    const idx = filterState.notes.indexOf(note);
+    if (idx > -1) {
+      if (filterState.notes.length > 1) {
+        filterState.notes.splice(idx, 1);
+        btn.classList.add('inactive');
+      }
+    } else {
+      filterState.notes.push(note);
+      btn.classList.remove('inactive');
+      // Si toutes redeviennent sélectionnées, retirer les inactive
+      if (filterState.notes.length === allNotes.length) {
+        document.querySelectorAll('.note-btn').forEach(b => b.classList.remove('inactive'));
+      }
+    }
+  }
+  filterMarkers();
+};
       notesList.appendChild(btn);
     });
   }
@@ -511,7 +527,8 @@ function filterMarkers() {
       const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
       const h = parseHour(bar.closesAt);
       const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
-const noteOk = filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
+const isPMU = bar.types && bar.types.includes('pmu');
+const noteOk = isPMU || filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
       const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
       if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
       else { if (map.hasLayer(marker)) map.removeLayer(marker); }
