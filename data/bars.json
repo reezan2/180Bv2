@@ -15,9 +15,7 @@
          ],
          "isPépite":false,
          "types": ["terrasse-au-soleil", "flechettes", "guinguette"],
-         "closesAt": "02:00",
-  "hasHappyHour": true,
-  "happyHourTimes": "18-20h"
+         "closesAt": "02:00"
       },
       {
          "id":2,
