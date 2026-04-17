@@ -247,35 +247,12 @@
     <button onclick="resetFilters()" style="font-size:13px;color:#059669;background:none;border:none;cursor:pointer;font-weight:600">Réinitialiser</button>
   </div>
 
-  <!-- Type de bar -->
-  <div class="filter-section">
-    <div class="filter-section-title">Type de bar</div>
-    <div id="filter-type-list"></div>
-  </div>
 
-  <!-- Happy hours -->
-  <div class="filter-section">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <span class="filter-section-title" style="margin:0">Happy hours</span>
-      <label class="filter-toggle">
-        <input type="checkbox" id="filter-hh" onchange="onFilterChange()">
-        <span class="filter-toggle-track"></span>
-        <span class="filter-toggle-thumb"></span>
-      </label>
-    </div>
-  </div>
-
-  <!-- Ferme après 2h -->
-  <div class="filter-section">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <span class="filter-section-title" style="margin:0">Ferme après 2h</span>
-      <label class="filter-toggle">
-        <input type="checkbox" id="filter-ferme" onchange="onFilterChange()">
-        <span class="filter-toggle-track"></span>
-        <span class="filter-toggle-thumb"></span>
-      </label>
-    </div>
-  </div>
+<!-- Notes (incluant Pépite) -->
+<div class="filter-section">
+  <div class="filter-section-title">NOTES</div>
+  <div id="filter-notes-list" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+</div>
 
 <!-- Prix -->
 <div class="filter-section">
@@ -291,11 +268,11 @@
   </div>
 </div>
 
-<!-- Notes (incluant Pépite) -->
-<div class="filter-section">
-  <div class="filter-section-title">NOTES</div>
-  <div id="filter-notes-list" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-</div>
+  <!-- Type de bar -->
+  <div class="filter-section">
+    <div class="filter-section-title">Type de bar</div>
+    <div id="filter-type-list"></div>
+  </div>
 
 </div>
   <!-- MODAL DONATION -->
