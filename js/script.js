@@ -383,11 +383,13 @@ function initFilterUI() {
 
 if (note === 'Pépite') {
   btn.textContent = '';
-  btn.style.background = '#fef3c7';
+  btn.style.background = 'transparent';
+  btn.style.border = 'none';
+  btn.style.boxShadow = 'none';
   const img = document.createElement('img');
   img.src = './assets/Pepite.png';
-  img.style.width = '36px';
-  img.style.height = '36px';
+  img.style.width = '42px';
+  img.style.height = '42px';
   img.style.objectFit = 'contain';
   btn.appendChild(img);
 } else {
@@ -525,8 +527,10 @@ function filterMarkers() {
       const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
       const h = parseHour(bar.closesAt);
       const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
+const allNotes = ['Pépite', 'A', 'B', 'C', 'D'];
 const isPMU = bar.types && bar.types.includes('pmu');
-const noteOk = isPMU || filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
+const allSelected = filterState.notes.length === allNotes.length;
+const noteOk = isPMU ? allSelected : filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
       const visible = typeOk && priceOk && fermeOk && noteOk;
       if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
       else { if (map.hasLayer(marker)) map.removeLayer(marker); }
