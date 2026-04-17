@@ -560,7 +560,13 @@ function toggleFilterPanel() {
 }
 
 function resetFilters() {
-  filterState = { types: [], happyHour: false, priceMin: priceRange.min, priceMax: priceRange.max, fermeApres2h: false, notes: ['Pépite', 'A', 'B', 'C', 'D'] };
+  filterState = {
+    types: [],
+    priceMin: priceRange.min,
+    priceMax: priceRange.max,
+    fermeApres2h: false,
+    notes: ['Pépite', 'A', 'B', 'C', 'D']
+  };
   document.querySelectorAll('.filter-type-item').forEach((el, i) => el.classList.toggle('active', i === 0));
   document.getElementById('filter-ferme').checked = false;
   const minSlider = document.getElementById('price-min');
