@@ -388,8 +388,8 @@ if (note === 'Pépite') {
   btn.style.boxShadow = 'none';
   const img = document.createElement('img');
   img.src = './assets/Pepite.png';
-  img.style.width = '42px';
-  img.style.height = '42px';
+  img.style.width = '46px';
+  img.style.height = '46px';
   img.style.objectFit = 'contain';
   btn.appendChild(img);
 } else {
