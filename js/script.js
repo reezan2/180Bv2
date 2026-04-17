@@ -559,22 +559,39 @@ function toggleFilterPanel() {
   document.getElementById('filter-overlay').classList.toggle('open');
 }
 
+// ✅ APRÈS
 function resetFilters() {
   filterState = {
     types: [],
     priceMin: priceRange.min,
     priceMax: priceRange.max,
-    fermeApres2h: false,
     notes: ['Pépite', 'A', 'B', 'C', 'D']
   };
+
+  // Reset type de bar
   document.querySelectorAll('.filter-type-item').forEach((el, i) => el.classList.toggle('active', i === 0));
-  document.getElementById('filter-ferme').checked = false;
+
+  // Reset prix — dans cet ordre précis
   const minSlider = document.getElementById('price-min');
   const maxSlider = document.getElementById('price-max');
-  if (minSlider) minSlider.value = priceRange.min;
-  if (maxSlider) maxSlider.value = priceRange.max;
+  if (minSlider) {
+    minSlider.min = priceRange.min;
+    minSlider.max = priceRange.max;
+    minSlider.value = priceRange.min;
+  }
+  if (maxSlider) {
+    maxSlider.min = priceRange.min;
+    maxSlider.max = priceRange.max;
+    maxSlider.value = priceRange.max;
+  }
   updatePriceDisplay();
-  document.querySelectorAll('.note-btn').forEach(btn => btn.classList.remove('inactive'));
+
+  // Reset notes — retire inactive ET remet l'opacité
+  document.querySelectorAll('.note-btn').forEach(btn => {
+    btn.classList.remove('inactive');
+    btn.style.opacity = '1';
+  });
+
   filterMarkers();
 }
 function geolocateInit() {
