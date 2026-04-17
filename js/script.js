@@ -12,7 +12,7 @@ let priceRange = { min: 0, max: 20 };
 let recentSearches = [];
 let fuse = null;
 
-const BAR_TYPES = ['Tous', 'Bar à fléchette', 'Bar dansant', 'Bar à cocktail', 'Guinguette', 'Pub', 'Bar à jeux', 'Terrasse au soleil', 'PMU'];
+const BAR_TYPES = ['Tous', 'Bar à fléchette', 'Bar dansant', 'Bar à cocktail', 'Guinguette', 'Pub', 'Bar à jeux', 'Terrasse au soleil'];
 const TYPE_MAP = {
   'Bar à fléchette': 'flechettes', 'Bar dansant': 'bar-dansant',
   'Bar à cocktail': 'cocktail', 'Guinguette': 'guinguette',
