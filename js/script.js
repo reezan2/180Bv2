@@ -3,7 +3,6 @@ let bars = [];
 let markers = [];
 let filterState = {
   types: [],
-  happyHour: false,
 priceMin: null,
 priceMax: null,
   fermeApres2h: false,
@@ -523,18 +522,17 @@ function filterMarkers() {
     markers.forEach(({ marker, bar }) => {
       const price = parsePrice(bar.pdlmc_price);
       const typeOk = filterState.types.length === 0 || (bar.types && filterState.types.some(t => bar.types.includes(t)));
-      const hhOk = !filterState.happyHour || bar.hasHappyHour === true;
       const priceOk = !price || (price >= filterState.priceMin && price <= filterState.priceMax);
       const h = parseHour(bar.closesAt);
       const fermeOk = !filterState.fermeApres2h || (h >= 2 && h <= 8);
 const isPMU = bar.types && bar.types.includes('pmu');
 const noteOk = isPMU || filterState.notes.includes(bar.isPépite ? 'Pépite' : bar.rating);
-      const visible = typeOk && hhOk && priceOk && fermeOk && noteOk;
+      const visible = typeOk && priceOk && fermeOk && noteOk;
       if (visible) { if (!map.hasLayer(marker)) marker.addTo(map); }
       else { if (map.hasLayer(marker)) map.removeLayer(marker); }
     });
     // Indicateur visuel si des filtres sont actifs
-const isActive = filterState.types.length > 0 || filterState.happyHour ||
+const isActive = filterState.types.length > 0 ||
   filterState.fermeApres2h || filterState.priceMin > priceRange.min ||
   filterState.priceMax < priceRange.max || filterState.notes.length < 5;
 const filterBtns = document.querySelectorAll('.leaflet-filter-btn');
@@ -548,7 +546,6 @@ if (countEl) countEl.textContent = `${count} bar${count > 1 ? 's' : ''}`;
 }
 
 function onFilterChange() {
-  filterState.happyHour = document.getElementById('filter-hh').checked;
   filterState.fermeApres2h = document.getElementById('filter-ferme').checked;
   filterMarkers();
 }
@@ -561,7 +558,6 @@ function toggleFilterPanel() {
 function resetFilters() {
   filterState = { types: [], happyHour: false, priceMin: priceRange.min, priceMax: priceRange.max, fermeApres2h: false, notes: ['Pépite', 'A', 'B', 'C', 'D'] };
   document.querySelectorAll('.filter-type-item').forEach((el, i) => el.classList.toggle('active', i === 0));
-  document.getElementById('filter-hh').checked = false;
   document.getElementById('filter-ferme').checked = false;
   const minSlider = document.getElementById('price-min');
   const maxSlider = document.getElementById('price-max');
