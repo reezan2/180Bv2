@@ -14,7 +14,7 @@
             "photos/Amere.jpg"
          ],
          "isPépite":false,
-         "types": ["terrasse-au-soleil", "flechettes", "guinguette"],
+         "types": ["flechettes"],
          "closesAt": "02:00"
       },
       {
@@ -30,7 +30,8 @@
          "photos":[
             "photos/Atomic cafe.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-jeu", "flechettes"]
       },
       {
          "id":3,
@@ -75,7 +76,8 @@
          "photos":[
             "photos/Bagadou.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":6,
@@ -106,7 +108,8 @@
          "photos":[
             "photos/Bibou.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":8,
@@ -121,7 +124,8 @@
          "photos":[
             "photos/Black pearl cafe.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":9,
@@ -136,7 +140,8 @@
          "photos":[
             "photos/Boucan.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":10,
@@ -167,7 +172,8 @@
          "photos":[
             "photos/Buck mulligan.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":12,
@@ -197,7 +203,8 @@
          "photos":[
             "photos/Commerce.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":14,
@@ -242,7 +249,8 @@
          "photos":[
             "photos/Canaille.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":17,
@@ -257,7 +265,8 @@
          "photos":[
             "photos/Cascabel.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":18,
@@ -272,7 +281,8 @@
          "photos":[
             "photos/Chauffe marcel.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":19,
@@ -326,13 +336,15 @@
          "lng":-1.5549339382529426,
          "rating":"A",
          "color":"#306629",
-         "pdlmc_price":"4,5€",
+         "pdlmc_price":"3,9€",
          "description":"Chez Louisette se situe en face du Louis Blanc sur les bords de Loire derrière le CHU sur l'île de Nantes ! On adore le spot et la terrasse au soleil avec vue sur la Loire lors des",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C51HhkuBoz4/",
          "photos":[
             "photos/Chez louisette.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+          "types": ["terrasse-au-soleil"]
+
       },
       {
          "id":23,
@@ -347,7 +359,8 @@
          "photos":[
             "photos/Chez lulu.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":24,
@@ -362,7 +375,8 @@
          "photos":[
             "photos/Chez maurice.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":25,
@@ -377,7 +391,8 @@
          "photos":[
             "photos/Coco bandit.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":26,
@@ -386,7 +401,7 @@
          "lng":-1.5533510075651753,
          "rating":"B",
          "color":"#b5dabe",
-         "pdlmc_price":"4,3€",
+         "pdlmc_price":"4,5€",
          "description":"Le De Dannan est un pub irlandais situé dans le dynamique quartier Feydeau. ☘️ La décoration du bar nous rappelle l'ambiance celtique chère aux Irish Pubs et apparaît très chaleureuse.",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C2NjaQmqj71/",
          "photos":[
@@ -407,7 +422,8 @@
          "photos":[
             "photos/Delirium.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":28,
@@ -483,7 +499,8 @@
          "photos":[
             "photos/Flemings.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":33,
@@ -498,7 +515,8 @@
          "photos":[
             "photos/Game over.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-jeu"]
       },
       {
          "id":34,
@@ -513,7 +531,8 @@
          "photos":[
             "photos/Gigg irish pub.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":35,
@@ -528,7 +547,8 @@
          "photos":[
             "photos/Gigg irish pub graslin.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":36,
@@ -589,7 +609,8 @@
          "photos":[
             "photos/Jack corner.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":40,
@@ -604,7 +625,8 @@
          "photos":[
             "photos/John mcbyrne.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub"]
       },
       {
          "id":41,
@@ -619,7 +641,8 @@
          "photos":[
             "photos/John mcbyrne Co.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":42,
@@ -696,7 +719,8 @@
          "photos":[
             "photos/Contrescarpe.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":47,
@@ -711,7 +735,8 @@
          "photos":[
             "photos/Fee verte.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":48,
@@ -726,7 +751,8 @@
          "photos":[
             "photos/Forge.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-jeu"]
       },
       {
          "id":49,
@@ -786,7 +812,8 @@
          "photos":[
             "photos/Provence.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":53,
@@ -801,7 +828,8 @@
          "photos":[
             "photos/Reserve.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":54,
@@ -816,7 +844,8 @@
          "photos":[
             "photos/Ribouldingue.jpg"
          ],
-         "isPépite":true
+         "isPépite":true,
+         "types": ["flechettes"]
       },
       {
          "id":55,
@@ -831,7 +860,8 @@
          "photos":[
             "photos/Taverne royale.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":56,
@@ -846,7 +876,8 @@
          "photos":[
             "photos/Terrasse ile.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":57,
@@ -861,7 +892,8 @@
          "photos":[
             "photos/Trinquette.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":58,
@@ -876,7 +908,9 @@
          "photos":[
             "photos/Absence.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
+         
       },
       {
          "id":59,
@@ -921,7 +955,8 @@
          "photos":[
             "photos/13 et 3.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":62,
@@ -951,7 +986,8 @@
          "photos":[
             "photos/Bar du coin.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":64,
@@ -966,7 +1002,8 @@
          "photos":[
             "photos/Bras de fer.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":65,
@@ -996,7 +1033,8 @@
          "photos":[
             "photos/Cafe du bouffay.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":67,
@@ -1011,7 +1049,8 @@
          "photos":[
             "photos/cafe du cinema.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":68,
@@ -1103,7 +1142,8 @@
          "photos":[
             "photos/Cote plage.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":76,
@@ -1148,7 +1188,8 @@
          "photos":[
             "photos/Ferrailleur.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":79,
@@ -1178,7 +1219,8 @@
          "photos":[
             "photos/Grabuge.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":81,
@@ -1223,7 +1265,8 @@
          "photos":[
             "photos/Kraken.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":84,
@@ -1254,7 +1297,8 @@
          "photos":[
             "photos/Lu.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "bar-dansant"]
       },
       {
          "id":86,
@@ -1284,7 +1328,8 @@
          "photos":[
             "photos/Mac.jpg"
          ],
-         "isPépite":true
+         "isPépite":true,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":88,
@@ -1331,7 +1376,8 @@
          "photos":[
             "photos/Mess.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-dansant", "flechettes"]
       },
       {
          "id":91,
@@ -1361,7 +1407,8 @@
          "photos":[
             "photos/Narcisse.jpg"
          ],
-         "isPépite":true
+         "isPépite":true,
+         "types": ["flechettes"]
       },
       {
          "id":93,
@@ -1376,7 +1423,8 @@
          "photos":[
             "photos/Nomad.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-dansant", "flechettes"]
       },
       {
          "id":94,
@@ -1391,7 +1439,8 @@
          "photos":[
             "photos/Perrok.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":95,
@@ -1437,7 +1486,8 @@
          "photos":[
             "photos/Poulp.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":98,
@@ -1497,7 +1547,8 @@
          "photos":[
             "photos/Saint mihiel.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":102,
@@ -1527,7 +1578,8 @@
          "photos":[
             "photos/Shaft.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":104,
@@ -1557,7 +1609,8 @@
          "photos":[
             "photos/Sur mesure.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":106,
@@ -1587,7 +1640,8 @@
          "photos":[
             "photos/Embuscade.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":108,
@@ -1602,7 +1656,8 @@
          "photos":[
             "photos/Berthom.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":109,
@@ -1632,7 +1687,8 @@
          "photos":[
             "photos/Fleurs du malt.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":112,
@@ -1677,7 +1733,8 @@
          "photos":[
             "photos/Levrette.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":115,
@@ -1692,7 +1749,8 @@
          "photos":[
             "photos/Lili big cafe.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":116,
@@ -1707,7 +1765,8 @@
          "photos":[
             "photos/Indecis.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-jeu"]
       },
       {
          "id":117,
@@ -1722,7 +1781,8 @@
          "photos":[
             "photos/Lab.jpg"
          ],
-         "isPépite":true
+         "isPépite":true,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":118,
@@ -1737,7 +1797,8 @@
          "photos":[
             "photos/Live bar.jpg"
          ],
-         "isPépite":true
+         "isPépite":true,
+         "types": ["flechettes"]
       },
       {
          "id":119,
@@ -1768,7 +1829,8 @@
          "photos":[
             "photos/Ubik.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":121,
@@ -1798,7 +1860,8 @@
          "photos":[
             "photos/Maison cafe.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":123,
@@ -1813,7 +1876,8 @@
          "photos":[
             "photos/Mojo.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":124,
@@ -1828,7 +1892,8 @@
          "photos":[
             "photos/M machin.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["flechettes"]
       },
       {
          "id":125,
@@ -1873,7 +1938,8 @@
          "photos":[
             "photos/Night l.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":128,
@@ -1888,7 +1954,8 @@
          "photos":[
             "photos/Ohm.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":129,
@@ -1933,7 +2000,8 @@
          "photos":[
             "photos/Peter mc cool.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":132,
@@ -1963,7 +2031,8 @@
          "photos":[
             "photos/Ruin bar.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":134,
@@ -1978,7 +2047,8 @@
          "photos":[
             "photos/Safe place.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil"]
       },
       {
          "id":135,
@@ -1993,7 +2063,8 @@
          "photos":[
             "photos/Salut Marcel.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-dansant", "flechettes"]
       },
       {
          "id":136,
@@ -2054,7 +2125,8 @@
          "photos":[
             "photos/Cornishman.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":141,
@@ -2069,7 +2141,8 @@
          "photos":[
             "photos/Green sheep.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub", "flechettes"]
       },
       {
          "id":142,
@@ -2114,7 +2187,8 @@
          "photos":[
             "photos/Wattignies.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
       },
       {
          "id":145,
@@ -2189,7 +2263,8 @@
          "photos":[
             "photos/Littlewilliam.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["pub"]
       },      
       {
          "id":150,
@@ -2235,10 +2310,27 @@
          "photos":[
             "photos/Tavernedesaventuriers.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
+         "types": ["bar-a-jeu"]
       },
             {
          "id":153,
+         "name":"Le Chat Noir",
+         "lat":47.213003657335825, 
+         "lng":-1.5563331101121152,
+         "rating":"B",
+         "color":"#b5dabe",
+         "pdlmc_price":"5€",
+         "description":"Le Chat Noir vient de fêter ces douze ans il y a quelques jours ! Ce bar devient petit à petit un classique du centre-ville de Nantes. 🔰 Situé en face de la place du Commerce, le bar a une grande",
+         "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Cq8mdkMofIs/",
+         "photos":[
+            "photos/Chat noir.jpg"
+         ],
+         "isPépite":false,
+         "types": ["terrasse-au-soleil", "flechettes"]
+      },
+            {
+         "id":154,
          "name":"Shake Point",
          "lat":47.213805281921026,
          "lng":-1.5542630591052549,
@@ -2251,7 +2343,23 @@
             "photos/Shakepoint.jpg"
          ],
          "isPépite":false,
-         "types": ["flechettes"] 
+         "types": ["terrasse-au-soleil", "flechettes"]
+      },
+                  {
+         "id":155,
+         "name":"Les Copains d'Abord",
+         "lat":47.21618054962681, 
+         "lng":-1.5584094305704068,
+         "rating":"A",
+         "color":"#306629",
+         "pdlmc_price":"6€",
+         "description":"Pour notre 150ème bar, on a décidé de tester Les Copains D'abord, un bar situé entre place Royale et Bretagne. ✌️ Le bar est très agréable, avec un étage assez grand et chaleureux. Il",
+         "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DTYSnw8DTT6/",
+         "photos":[
+            "photos/Copainsdabord.jpg"
+         ],
+         "isPépite":false,
+         "types": ["flechettes"]
       }
    ]
 }
