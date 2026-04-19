@@ -31,7 +31,7 @@
             "photos/Atomic cafe.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-jeu", "flechettes"]
+         "types": ["jeux", "flechettes"]
       },
       {
          "id":3,
@@ -145,7 +145,7 @@
       },
       {
          "id":10,
-         "name":"Bubba Gum",
+         "name":"Bubba Gump",
          "lat":47.216077332037486,
          "lng":-1.5524793459129322,
          "rating":"A",
@@ -154,7 +154,7 @@
          "description":"Le Bubba Gump est un bar à cocktail situé en plein cœur du quartier Bouffay ! 🍹La terrasse n’est pas très grande mais l’intérieur est chaleureux avec une deco originale ! 🌿",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DDCxn38sWlK/",
          "photos":[
-            "photos/Bubba gum.jpg"
+            "photos/Bubba Gum.jpg"
          ],
          "isPépite":false,
          "types": ["cocktail", "flechettes"]
@@ -704,7 +704,7 @@
             "photos/Casa.jpg"
          ],
          "isPépite":false,
-         "types": ["terrasse-au-soleil", "bar-a-cocktail"]
+         "types": ["terrasse-au-soleil", "cocktail"]
       },
       {
          "id":46,
@@ -752,7 +752,7 @@
             "photos/Forge.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-jeu"]
+         "types": ["jeux"]
       },
       {
          "id":49,
@@ -1127,7 +1127,7 @@
             "photos/Corneille.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-cocktail"]
+         "types": ["cocktail"]
       },
       {
          "id":75,
@@ -1282,7 +1282,7 @@
             "photos/Labo.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-cocktail"]
+         "types": ["cocktail"]
       },
       {
          "id":85,
@@ -1345,7 +1345,7 @@
             "photos/Maestro.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-cocktail"]
+         "types": ["cocktail"]
       },
       {
          "id":89,
@@ -1361,7 +1361,7 @@
             "photos/Medusa.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-cocktail"]
+         "types": ["cocktail"]
       },
       {
          "id":90,
@@ -1766,7 +1766,7 @@
             "photos/Indecis.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-jeu"]
+         "types": ["jeux"]
       },
       {
          "id":117,
@@ -2080,7 +2080,7 @@
             "photos/Santeuil cafe.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-cocktail"]
+         "types": ["cocktail"]
       },
       {
          "id":137,
@@ -2311,7 +2311,7 @@
             "photos/Tavernedesaventuriers.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-jeu"]
+         "types": ["jeux"]
       },
             {
          "id":153,
