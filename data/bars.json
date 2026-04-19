@@ -157,7 +157,7 @@
             "photos/Bubba gum.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-cocktail", "flechettes"]
+         "types": ["cocktail", "flechettes"]
       },
       {
          "id":11,
@@ -516,7 +516,7 @@
             "photos/Game over.jpg"
          ],
          "isPépite":false,
-         "types": ["bar-a-jeu"]
+         "types": ["jeux"]
       },
       {
          "id":34,
