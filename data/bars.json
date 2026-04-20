@@ -116,8 +116,6 @@
          "name":"Black Pearl Café",
          "lat":47.211542443878166,
          "lng":-1.5454119747488047,
-         "rating":"D",
-         "color":"#d66643",
          "pdlmc_price":"5,2€",
          "description":"Le Black Pearl Café se situe quartier Madeleine près de la Cité des Congrès. C'est un bar tabac avec un intérieur assez grand, deux fléchettes 🎯, un billard 🎱 et des canapés bien confort 🥰",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/C4gMvWQLSCL/",
@@ -125,7 +123,7 @@
             "photos/Black pearl cafe.jpg"
          ],
          "isPépite":false,
-         "types": ["flechettes"]
+         "types": ["pmu", "flechettes"]
       },
       {
          "id":9,
