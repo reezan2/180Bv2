@@ -60,7 +60,7 @@
   box-shadow: 4px 0 20px rgba(0,0,0,0.12);
 }
 #filter-panel.open { left: 0; }
-#filter-overlay { position: fixed; inset: 0; z-index: 2999; display: none; }
+#filter-overlay { position: fixed; top: var(--header-h); left: 0; width: 290px; height: calc(100vh - var(--header-h)); z-index: 2999; display: none; }
 #filter-overlay.open { display: block; }
 .filter-section { padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.08); }
 .filter-section-title {
