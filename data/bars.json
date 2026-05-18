@@ -49,21 +49,6 @@
          "isPépite":false
       },
       {
-         "id":4,
-         "name":"Au Bureau",
-         "lat":47.20797206466239,
-         "lng":-1.5593105324203207,
-         "rating":"C",
-         "color":"#f4c280",
-         "pdlmc_price":"7€",
-         "description":"Au Bureau, c'st un pub/brasserie situé sur les bords de Loire juste à côté du tribunal ! L'été, le bar possède une terrasse idéalement situé au calme le long du fleuve, un bon plan si",
-         "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DEflENcIvgk/",
-         "photos":[
-            "photos/Bureau.jpg"
-         ],
-         "isPépite":false
-      },
-      {
          "id":5,
          "name":"Bagadou",
          "lat":47.212876540168,
@@ -2373,6 +2358,68 @@
             "photos/Caboulot.jpg"
          ],
          "isPépite":false
+      },
+                              {
+         "id":157,
+         "name":"Micro Barrr",
+         "lat":47.209880635585485, 
+         "lng":-1.5648360062713553,
+         "rating":"A",
+         "color":"#306629",
+         "pdlmc_price":"6,5€",
+         "description":"Le Micro Barrr c’est le bar juste à côté du Micro Comedy Club ! Avec le Micro Ondes, tout cela compose le Micro Village et on se devait de tester ça ! 🤗 Situé sur le Quai de la Fosse, le Micro Barrr",
+         "ig_link":"https://www.instagram.com/p/DXOvbO5jcfl/?img_index=1",
+         "photos":[
+            "photos/MicroBarrr.jpg"
+         ],
+         "isPépite":false
+      },
+                                    {
+         "id":158,
+         "name":"L'Enchantier",
+         "lat":47.22198183598517,
+         "lng":-1.530834942700562,
+         "rating":"A",
+         "color":"#306629",
+         "pdlmc_price":"5,3€",
+         "description":"On te présente aujourd’hui une petite pépite du quartier Dalby, un vrai bistrot, café/concert comme on les aimes ! 😍 L'enchantier est situé pas loin de l’arrêt Moutonnerie, le bar a une petite terrasse",
+         "ig_link":"https://www.instagram.com/p/DXyqMXPja07/?img_index=1",
+         "photos":[
+            "photos/L_enchantier.jpg"
+         ],
+         "isPépite":false
+         "types": ["flechettes"]                              
+      },
+                              {
+         "id":159,
+         "name":"Célestine",
+         "lat":47.21210465110487, 
+         "lng":-1.5459562013521768,
+         "rating":"C",
+         "color":"#f4c280",
+         "pdlmc_price":"6,7€",
+         "description":"Il y a maintenant plusieurs mois, le bar Célestine a remplacé les Voisins dans le quartier de la Cité des Congrès ! On est passé y faire un tour pour vous mettre à jour ! Célestine, c’est un bar restaurant",
+         "ig_link":"https://www.instagram.com/p/DXpHrxUjZlF/?img_index=1",
+         "photos":[
+            "photos/Celestine.jpg"
+         ],
+         "isPépite":false
+      },
+                  {
+         "id":160,
+         "name":"Buvette de chez Maman",
+         "lat":47.21569818593726, 
+         "lng":-1.5526579109317094,
+         "rating":"B",
+         "color":"#b5dabe",
+         "pdlmc_price":"6€",
+         "description":"Le restaurant Chez Maman a ouvert il y a un an sa buvette : La Buvette de chez Maman ! 🍻 Un bar avec une déco kitsch et insolite ! Situé rue de la juiverie en plein Bouffay le bar profite d’un cadre",
+         "ig_link":"https://www.instagram.com/p/DW6yQGMjVqD/?img_index=1",
+         "photos":[
+            "photos/Buvettedechezmaman.jpg"
+         ],
+         "isPépite":false,
+         "types": ["flechettes"]
       }
    ]
 }
