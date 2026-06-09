@@ -2432,7 +2432,7 @@
          "photos":[
             "photos/Beaujoire.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
          "types": ["pmu"] 
       },
                                           {
@@ -2446,7 +2446,7 @@
          "photos":[
             "photos/Quaidesbrumes.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
          "types": ["pmu", "flechettes"] 
       },
                                                 {
@@ -2460,7 +2460,7 @@
          "photos":[
             "photos/Roindpointdevannes.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
          "types": ["pmu"] 
       },
                                                      {
@@ -2474,7 +2474,7 @@
          "photos":[
             "photos/Le91.jpg"
          ],
-         "isPépite":false
+         "isPépite":false,
          "types": ["pmu"] 
       }
    ]
