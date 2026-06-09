@@ -1602,7 +1602,7 @@
          "lng":-1.560272200135024,
          "rating":"C",
          "color":"#f4c280",
-         "pdlmc_price":"5,5€",
+         "pdlmc_price":"4,5€",
          "description":"Le Sur Mesure est un bar à bière, un vrai ! 🍺 Tu trouveras forcément une bière à ton goût et à un prix raisonnable. On y trouve aussi un petit peu de vin ainsi que du fromage et du saucisson",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/Cj55IIIszG7/",
          "photos":[
@@ -1680,7 +1680,7 @@
          "lng":-1.5644127612550616,
          "rating":"Pépite",
          "color":"Pepite.png",
-         "pdlmc_price":"5,6€",
+         "pdlmc_price":"5,8€",
          "description":"Nouvelle pépite dans la team 180B ! ⭐️Bienvenue au bistro les Petits Pavés, situé tout près de la place Viarme ! Les Petits Pavés c’est un bar de quartier chaleureux où on peut se poser tranqui",
          "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DMYJDQTs9M4/",
          "photos":[
@@ -2208,9 +2208,9 @@
          "name":"Le Fer à Cheval",
          "lat":47.23289102129243, 
          "lng":-1.5654143417095316,
-         "pdlmc_price":"6€",
-         "description":"Le Fer à Cheval",
-         "ig_link":"https://www.instagram.com/nantes_en_180_bars/p/DK7N1gTsJ9Y/",
+         "pdlmc_price":"5,6€",
+         "description":"Tu ne peux pas rater la devanture toute bleue du Fer à Cheval, ce PMU situé juste à côté du rond point de Rennes ! On a été le tester et on te raconte ça ! 😎 L’intérieur du bar est assez froid avec u",
+         "ig_link":"https://www.instagram.com/p/DYxGh5qDbup/?img_index=1",
          "photos":[
             "photos/Feracheval.jpg"
          ],
@@ -2420,6 +2420,62 @@
          ],
          "isPépite":false,
          "types": ["flechettes"]
+      },
+                                    {
+         "id":161,
+         "name":"La Beaujoire",
+         "lat":47.24881626669062, 
+         "lng":-1.5213594004833464,
+         "pdlmc_price":"6,7€",
+         "description":"La Beaujoire c’est sûrement le PMU le plus emblématique de Nantes ! Avec sa grande façade au couleurs du FC Nantes, tu ne peux pas le rater ! Le bar est grand avec beaucoup de passage car",
+         "ig_link":"https://www.instagram.com/p/DYpNgLWDdTj/?img_index=1",
+         "photos":[
+            "photos/Beaujoire.jpg"
+         ],
+         "isPépite":false
+         "types": ["pmu"] 
+      },
+                                          {
+         "id":162,
+         "name":"Quai des Brumes",
+         "lat":47.221368119087984, 
+         "lng":-1.531138327233663,
+         "pdlmc_price":"5,7€",
+         "description":"Vous êtes plusieurs à nous avoir conseillé de tester le Quai des Brumes et on vous a écouté ! Situé quartier Dalby le Quai des Brumes dispose d'une petite terrasse sympa et d'un intérieur plus petit.",
+         "ig_link":"https://www.instagram.com/p/DYpNgLWDdTj/?img_index=1",
+         "photos":[
+            "photos/Quaidesbrumes.jpg"
+         ],
+         "isPépite":false
+         "types": ["pmu"] 
+      },
+                                                {
+         "id":163,
+         "name":"Rond Point de Vannes",
+         "lat":47.22943074842739, 
+         "lng":-1.572463940388226,
+         "pdlmc_price":"5,9€",
+         "description":"Encore un classique des PMU avec le Rond Point de Vannes, un bar/tabac situé entre le quartier Saint Félix et le parc de Procé. 🌳 Le lieu est séparé entre un espace tabac/presse/grattage et le bar",
+         "ig_link":"https://www.instagram.com/p/DYpNgLWDdTj/?img_index=1",
+         "photos":[
+            "photos/Roindpointdevannes.jpg"
+         ],
+         "isPépite":false
+         "types": ["pmu"] 
+      },
+                                                     {
+         "id":164,
+         "name":"Le 91",
+         "lat":47.208161489853225, 
+         "lng":-1.5703121316652788,
+         "pdlmc_price":"6,2€",
+         "description":"On trouve plusieurs bars dont quelques PMU sur le quai de la fosse et on t’en présente un aujourd’hui : le 91 ! Situé un peu après le pont Anne de Bretagne le 91 n’a pas vraiment de terrasse devant et",
+         "ig_link":"https://www.instagram.com/p/DYpNgLWDdTj/?img_index=1",
+         "photos":[
+            "photos/Le91.jpg"
+         ],
+         "isPépite":false
+         "types": ["pmu"] 
       }
    ]
 }
